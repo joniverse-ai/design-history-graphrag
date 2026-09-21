@@ -1,0 +1,6 @@
+streamlit
+networkx
+langgraph
+google-genai
+pandas
+graphviz
