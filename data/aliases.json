@@ -1,0 +1,756 @@
+{
+  "auto": {},
+  "manual": [
+    {
+      "canonical": "Alvar Aalto",
+      "type": "Person",
+      "variants": [
+        "알바르 알토",
+        "Alvar Aalto"
+      ]
+    },
+    {
+      "canonical": "Antonio Gaudi",
+      "type": "Person",
+      "variants": [
+        "안토니 가우디",
+        "Antonio Gaudi",
+        "Antoni Gaudi"
+      ]
+    },
+    {
+      "canonical": "Arbeitsrat fur Kunst",
+      "type": "Institution",
+      "variants": [
+        "Arbeitsrat für Kunst",
+        "Arbeitsrat fur Kunst",
+        "예술노동위원회"
+      ]
+    },
+    {
+      "canonical": "Arts and Crafts",
+      "type": "Movement",
+      "variants": [
+        "Arts and Crafts",
+        "Arts and Crafts movement",
+        "미술 공예 운동",
+        "미술공예운동",
+        "아트 앤드 크래프트 운동"
+      ]
+    },
+    {
+      "canonical": "Barcelona Chair",
+      "type": "Work",
+      "variants": [
+        "바르셀로나 체어",
+        "Barcelona Chair",
+        "Barcelona chair"
+      ]
+    },
+    {
+      "canonical": "Bauhaus",
+      "type": "Institution",
+      "variants": [
+        "Bauhaus",
+        "Bauhaus Dessau",
+        "Bauhaus school",
+        "Staatliches Bauhaus",
+        "The Bauhaus",
+        "국립 바우하우스",
+        "국립 바우하우스 바이마르",
+        "데사우 시립 바우하우스",
+        "바우하우스",
+        "바우하우스 데사우",
+        "바우하우스 학교"
+      ]
+    },
+    {
+      "canonical": "Bauhaus",
+      "type": "Movement",
+      "variants": [
+        "바우하우스",
+        "Bauhaus",
+        "바우하우스 양식",
+        "Bauhaus style"
+      ]
+    },
+    {
+      "canonical": "Braun",
+      "type": "Company",
+      "variants": [
+        "브라운",
+        "Braun",
+        "Braun AG"
+      ]
+    },
+    {
+      "canonical": "Braun SK4",
+      "type": "Work",
+      "variants": [
+        "브라운 SK4",
+        "SK4",
+        "SK 4",
+        "Braun SK4",
+        "Braun SK 4",
+        "Phonosuper SK 4",
+        "포노슈퍼 SK4"
+      ]
+    },
+    {
+      "canonical": "Charles Eames",
+      "type": "Person",
+      "variants": [
+        "찰스 임스",
+        "찰스 임즈",
+        "Charles Eames",
+        "Eames"
+      ]
+    },
+    {
+      "canonical": "Charles and Ray Eames",
+      "type": "Person",
+      "variants": [
+        "찰스 앤 레이 임스",
+        "Charles and Ray Eames",
+        "Charles & Ray Eames",
+        "임스 부부"
+      ]
+    },
+    {
+      "canonical": "De Stijl",
+      "type": "Movement",
+      "variants": [
+        "De Stijl",
+        "De Stĳl",
+        "Neo-Plasticism",
+        "데 스테일",
+        "데 스틸",
+        "데스테일",
+        "데스틸",
+        "신조형주의",
+        "신조형주의 운동"
+      ]
+    },
+    {
+      "canonical": "Deutscher Werkbund",
+      "type": "Movement",
+      "variants": [
+        "Deutscher Werkbund",
+        "German Association of Craftsmen",
+        "German Werkbund",
+        "독일 공작연맹",
+        "독일공작연맹",
+        "베르크본드 운동",
+        "베르크분트"
+      ]
+    },
+    {
+      "canonical": "Dieter Rams",
+      "type": "Person",
+      "variants": [
+        "디터 람스",
+        "람스",
+        "Dieter Rams",
+        "Rams"
+      ]
+    },
+    {
+      "canonical": "Eames Lounge Chair",
+      "type": "Work",
+      "variants": [
+        "임스 라운지 체어",
+        "Eames Lounge Chair",
+        "Eames Lounge Chair and Ottoman",
+        "Lounge Chair"
+      ]
+    },
+    {
+      "canonical": "Frank Lloyd Wright",
+      "type": "Person",
+      "variants": [
+        "프랭크 로이드 라이트",
+        "프랑크 로이드 라이트",
+        "Frank Lloyd Wright",
+        "Wright"
+      ]
+    },
+    {
+      "canonical": "Gerrit Rietveld",
+      "type": "Person",
+      "variants": [
+        "Gerrit Rietveld",
+        "Gerrit Thomas Rietveld",
+        "Rietveld",
+        "게리트 리트벨트",
+        "리트벨트",
+        "헤리트 리트벨트",
+        "헤리트 리트펠트"
+      ]
+    },
+    {
+      "canonical": "Harvard University",
+      "type": "Institution",
+      "variants": [
+        "하버드 대학교",
+        "하버드",
+        "Harvard University",
+        "Harvard",
+        "Harvard Graduate School of Design"
+      ]
+    },
+    {
+      "canonical": "Helvetica",
+      "type": "Work",
+      "variants": [
+        "헬베티카",
+        "Helvetica",
+        "Neue Haas Grotesk"
+      ]
+    },
+    {
+      "canonical": "Herbert Bayer",
+      "type": "Person",
+      "variants": [
+        "허버트 바이어",
+        "바이어",
+        "Herbert Bayer",
+        "Bayer",
+        "Herbert Bayer"
+      ]
+    },
+    {
+      "canonical": "Herman Miller",
+      "type": "Company",
+      "variants": [
+        "허먼 밀러",
+        "Herman Miller",
+        "MillerKnoll",
+        "Herman Miller Furniture Company"
+      ]
+    },
+    {
+      "canonical": "Inge Aicher-Scholl",
+      "type": "Person",
+      "variants": [
+        "Inge Aicher-Scholl",
+        "Inge Scholl",
+        "잉게 아이허숄"
+      ]
+    },
+    {
+      "canonical": "International Style",
+      "type": "Movement",
+      "variants": [
+        "인터내셔널 스타일",
+        "International Style",
+        "국제주의 양식",
+        "인터내셔널스타일"
+      ]
+    },
+    {
+      "canonical": "Johannes Itten",
+      "type": "Person",
+      "variants": [
+        "요하네스 이텐",
+        "이텐",
+        "Johannes Itten",
+        "Itten"
+      ]
+    },
+    {
+      "canonical": "Josef Albers",
+      "type": "Person",
+      "variants": [
+        "요제프 알버스",
+        "알버스",
+        "Josef Albers",
+        "Albers"
+      ]
+    },
+    {
+      "canonical": "Knoll",
+      "type": "Company",
+      "variants": [
+        "놀",
+        "Knoll",
+        "Knoll Inc.",
+        "Knoll International",
+        "Hans Knoll"
+      ]
+    },
+    {
+      "canonical": "László Moholy-Nagy",
+      "type": "Person",
+      "variants": [
+        "Laszlo Moholy-Nagy",
+        "László Moholy-Nagy",
+        "Moholy-Nagy",
+        "라슬로 모호이너지",
+        "라슬로 모홀리나지",
+        "모호이너지",
+        "모홀리",
+        "모홀리나지",
+        "모홀리 나기"
+      ]
+    },
+    {
+      "canonical": "Le Corbusier",
+      "type": "Person",
+      "variants": [
+        "르 코르뷔지에",
+        "르코르뷔지에",
+        "코르뷔지에",
+        "Le Corbusier",
+        "Charles-Édouard Jeanneret",
+        "Charles-Edouard Jeanneret",
+        "Charles Edouard Jeanneret-Gris",
+        "샤를 에두아르 잔레"
+      ]
+    },
+    {
+      "canonical": "Ludwig Mies van der Rohe",
+      "type": "Person",
+      "variants": [
+        "루트비히 미스 반 데어 로에",
+        "루트비히 미스 판 데어 로에",
+        "루트비히 미스 반 데 로에",
+        "미스 반 데어 로에",
+        "미스 반 데 로에",
+        "미스 판 데어 로에",
+        "미스",
+        "Ludwig Mies van der Rohe",
+        "Mies van der Rohe",
+        "Mies",
+        "Maria Ludwig Michael Mies",
+        "루트비히 미스 반데어로에"
+      ]
+    },
+    {
+      "canonical": "Marcel Breuer",
+      "type": "Person",
+      "variants": [
+        "마르셀 브로이어",
+        "브로이어",
+        "Marcel Breuer",
+        "Breuer",
+        "Marcel Lajos Breuer"
+      ]
+    },
+    {
+      "canonical": "Massimo Vignelli",
+      "type": "Person",
+      "variants": [
+        "마시모 비녤리",
+        "비녤리",
+        "Massimo Vignelli",
+        "Vignelli"
+      ]
+    },
+    {
+      "canonical": "Max Bill",
+      "type": "Person",
+      "variants": [
+        "막스 빌",
+        "Max Bill",
+        "Bill"
+      ]
+    },
+    {
+      "canonical": "Museum of Modern Art",
+      "type": "Institution",
+      "variants": [
+        "뉴욕 현대미술관",
+        "현대미술관",
+        "Museum of Modern Art",
+        "MoMA"
+      ]
+    },
+    {
+      "canonical": "New Bauhaus",
+      "type": "Institution",
+      "variants": [
+        "뉴 바우하우스",
+        "뉴바우하우스",
+        "New Bauhaus",
+        "School of Design in Chicago",
+        "Institute of Design"
+      ]
+    },
+    {
+      "canonical": "Oskar Schlemmer",
+      "type": "Person",
+      "variants": [
+        "오스카르 슐레머",
+        "슐레머",
+        "Oskar Schlemmer",
+        "Schlemmer"
+      ]
+    },
+    {
+      "canonical": "Otl Aicher",
+      "type": "Person",
+      "variants": [
+        "오틀 아이허",
+        "아이허",
+        "Otl Aicher",
+        "Aicher"
+      ]
+    },
+    {
+      "canonical": "Paul Klee",
+      "type": "Person",
+      "variants": [
+        "파울 클레",
+        "클레",
+        "Paul Klee",
+        "Klee"
+      ]
+    },
+    {
+      "canonical": "Paul Rand",
+      "type": "Person",
+      "variants": [
+        "폴 랜드",
+        "랜드",
+        "Paul Rand",
+        "Rand"
+      ]
+    },
+    {
+      "canonical": "Peter Behrens",
+      "type": "Person",
+      "variants": [
+        "페터 베렌스",
+        "베렌스",
+        "Peter Behrens",
+        "Behrens"
+      ]
+    },
+    {
+      "canonical": "Philip Johnson",
+      "type": "Person",
+      "variants": [
+        "필립 존슨",
+        "존슨",
+        "Philip Johnson",
+        "Johnson"
+      ]
+    },
+    {
+      "canonical": "Piet Mondrian",
+      "type": "Person",
+      "variants": [
+        "피에트 몬드리안",
+        "몬드리안",
+        "Piet Mondrian",
+        "Mondrian",
+        "Pieter Cornelis Mondriaan",
+        "피트 몬드리안"
+      ]
+    },
+    {
+      "canonical": "Ray Eames",
+      "type": "Person",
+      "variants": [
+        "레이 임스",
+        "레이 임즈",
+        "Ray Eames",
+        "Ray Kaiser Eames",
+        "Ray-Ray Eames"
+      ]
+    },
+    {
+      "canonical": "Red and Blue Chair",
+      "type": "Work",
+      "variants": [
+        "레드 앤 블루 체어",
+        "Red and Blue Chair",
+        "Red-Blue Chair",
+        "Rood-blauwe stoel",
+        "적청 의자"
+      ]
+    },
+    {
+      "canonical": "Theo van Doesburg",
+      "type": "Person",
+      "variants": [
+        "테오 판 두스부르크",
+        "두스부르크",
+        "Theo van Doesburg",
+        "van Doesburg",
+        "Christian Emil Marie Küpper"
+      ]
+    },
+    {
+      "canonical": "Ulm School of Design",
+      "type": "Institution",
+      "variants": [
+        "울름 조형대학",
+        "울름조형대학",
+        "Ulm School of Design",
+        "HfG Ulm",
+        "Hochschule für Gestaltung Ulm",
+        "HfG"
+      ]
+    },
+    {
+      "canonical": "Villa Savoy",
+      "type": "Work",
+      "variants": [
+        "빌라 사부아",
+        "Villa Savoy",
+        "Villa Savoye",
+        "사부아 주택"
+      ]
+    },
+    {
+      "canonical": "Vitra",
+      "type": "Company",
+      "variants": [
+        "비트라",
+        "Vitra"
+      ]
+    },
+    {
+      "canonical": "Vitsoe",
+      "type": "Company",
+      "variants": [
+        "비초에",
+        "Vitsoe",
+        "Vitsœ"
+      ]
+    },
+    {
+      "canonical": "Walter Gropius",
+      "type": "Person",
+      "variants": [
+        "발터 그로피우스",
+        "그로피우스",
+        "Walter Gropius",
+        "Gropius",
+        "Walter Adolph Georg Gropius"
+      ]
+    },
+    {
+      "canonical": "Wassily Chair",
+      "type": "Work",
+      "variants": [
+        "바실리 체어",
+        "바실리체어",
+        "Wassily Chair",
+        "Model B3",
+        "B3 chair"
+      ]
+    },
+    {
+      "canonical": "Wassily Kandinsky",
+      "type": "Person",
+      "variants": [
+        "바실리 칸딘스키",
+        "칸딘스키",
+        "Wassily Kandinsky",
+        "Kandinsky",
+        "바시리 칸딘스키"
+      ]
+    },
+    {
+      "canonical": "Adolf Loos",
+      "type": "Person",
+      "variants": [
+        "아돌프 로스",
+        "로스",
+        "Adolf Loos",
+        "Loos"
+      ]
+    },
+    {
+      "canonical": "Art Deco",
+      "type": "Movement",
+      "variants": [
+        "아르데코",
+        "아르 데코",
+        "Art Deco"
+      ]
+    },
+    {
+      "canonical": "Art Nouveau",
+      "type": "Movement",
+      "variants": [
+        "아르누보",
+        "아르 누보",
+        "Art Nouveau",
+        "Jugendstil"
+      ]
+    },
+    {
+      "canonical": "Constructivism",
+      "type": "Movement",
+      "variants": [
+        "구성주의",
+        "Constructivism",
+        "Russian Constructivism"
+      ]
+    },
+    {
+      "canonical": "Purism",
+      "type": "Movement",
+      "variants": [
+        "순수주의"
+      ]
+    },
+    {
+      "canonical": "Vienna Secession",
+      "type": "Movement",
+      "variants": [
+        "Secession",
+        "분리파",
+        "비엔나 분리파",
+        "빈 분리파"
+      ]
+    },
+    {
+      "canonical": "The French Union of Modern Artists",
+      "type": "Movement",
+      "variants": [
+        "현대 예술가 연맹"
+      ]
+    },
+    {
+      "canonical": "Süe and Mare",
+      "type": "Company",
+      "variants": [
+        "Sue and Mare",
+        "Suë and Mare",
+        "쉬에 앤 마르"
+      ]
+    },
+    {
+      "canonical": "Norman Bel Geddes",
+      "type": "Person",
+      "variants": [
+        "노먼 벨 게디스",
+        "Norman Bel Geddes"
+      ]
+    },
+    {
+      "canonical": "Raymond Duchamp-Villon",
+      "type": "Person",
+      "variants": [
+        "레몽 뒤샹비용",
+        "Raymond Duchamp-Villon"
+      ]
+    },
+    {
+      "canonical": "Raymond Hood",
+      "type": "Person",
+      "variants": [
+        "레이먼드 후드",
+        "Raymond Hood"
+      ]
+    },
+    {
+      "canonical": "Lluís Domènech i Montaner",
+      "type": "Person",
+      "variants": [
+        "루이스 도메네크 이 몬타네르",
+        "Lluís Domènech i Montaner"
+      ]
+    },
+    {
+      "canonical": "Louis Sullivan",
+      "type": "Person",
+      "variants": [
+        "루이스 설리번",
+        "Louis Sullivan"
+      ]
+    },
+    {
+      "canonical": "Victor Horta",
+      "type": "Person",
+      "variants": [
+        "빅토르 오르타",
+        "Victor Horta"
+      ]
+    },
+    {
+      "canonical": "Wiener Werkstätte",
+      "type": "Institution",
+      "variants": [
+        "빈 공방",
+        "Wiener Werkstätte"
+      ]
+    },
+    {
+      "canonical": "Sonia Delaunay",
+      "type": "Person",
+      "variants": [
+        "소니아 들로네",
+        "Sonia Delaunay"
+      ]
+    },
+    {
+      "canonical": "Henry van de Velde",
+      "type": "Person",
+      "variants": [
+        "앙리 반 데 벨데",
+        "Henry van de Velde"
+      ]
+    },
+    {
+      "canonical": "Erich Mendelsohn",
+      "type": "Person",
+      "variants": [
+        "에리히 멘델손",
+        "Erich Mendelsohn"
+      ]
+    },
+    {
+      "canonical": "Josef Hoffmann",
+      "type": "Person",
+      "variants": [
+        "요제프 호프만",
+        "Josef Hoffmann"
+      ]
+    },
+    {
+      "canonical": "University of Wisconsin–Madison",
+      "type": "Institution",
+      "variants": [
+        "위스콘신 대학교 매디슨",
+        "University of Wisconsin–Madison"
+      ]
+    },
+    {
+      "canonical": "William Morris",
+      "type": "Person",
+      "variants": [
+        "윌리엄 모리스",
+        "William Morris"
+      ]
+    },
+    {
+      "canonical": "Unité d'Habitation",
+      "type": "Work",
+      "variants": [
+        "유니테 다비타시옹",
+        "Unité d'habitation"
+      ]
+    },
+    {
+      "canonical": "Taliesin West",
+      "type": "Work",
+      "variants": [
+        "탈리어센 웨스트",
+        "Taliesin West"
+      ]
+    },
+    {
+      "canonical": "Hôtel Tassel",
+      "type": "Work",
+      "variants": [
+        "호텔 타셀",
+        "Hôtel Tassel"
+      ]
+    }
+  ]
+}
