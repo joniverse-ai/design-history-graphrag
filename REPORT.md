@@ -307,6 +307,48 @@ graph TD;
 **절단을 "실패 아님"으로 표기해** 정책상 의도된 동작임을 구분했다. §3.2의 낮은 경로 정밀도가
 화면에서 그대로 읽힌다.
 
+### 화면 1-b — 실제로 탄 경로
+
+![탐색 경로 그래프](docs/screenshot_evidence01.png)
+
+시작 개체 `Institution:bauhaus`가 파란색으로 강조되고, 거기 연결된 관계가 방향과 함께 보인다.
+`Walter Gropius ─FOUNDED→ Bauhaus`, `Ludwig Mies van der Rohe ─TAUGHT_AT→ Bauhaus` 등이다.
+
+**이 화면에 §3.4의 D1 결함이 그대로 드러난다.** `Paul Klee ─FOUNDED→`,
+`Wassily Kandinsky ─FOUNDED→`가 보이는데, 실제로 이들은 설립자가 아니라 마이스터였다.
+결함을 숨기지 않고 화면에 노출되게 두었다.
+
+### 화면 1-c — 근거 삼중항
+
+![근거 삼중항 표](docs/screenshot_evidence02.png)
+
+주어 / 관계 / 목적어에 **지지(support) 건수**를 함께 낸다. 이 열이 D1 같은 오추출을 눌러 이긴다:
+
+| 삼중항 | 지지 |
+|---|---|
+| `Walter Gropius — FOUNDED → Bauhaus` | **17** |
+| `Paul Klee — TAUGHT_AT → Bauhaus` | 7 |
+| `László Moholy-Nagy — FOUNDED → New Bauhaus` | 5 |
+
+여러 문서에서 반복 확인된 삼중항이 위로 올라오고, 한 문장에서만 나온 오추출은 아래로 밀린다.
+H1-01이 오추출 4건에도 불구하고 그로피우스를 정답으로 낸 이유가 이 열이다.
+
+### 화면 1-d — 출처 문서와 원문 문장
+
+![출처 문서](docs/screenshot_evidence03.png)
+
+**삼중항마다 어느 문서의 어느 문장에서 나왔는지 원문까지 추적된다.**
+
+```
+[1] László Moholy-Nagy —FOUNDED→ New Bauhaus (지지 5건)
+    문서: en_Bauhaus.md
+    문장: Moholy-Nagy also went to Chicago and founded the New Bauhaus school
+          under the sponsorship of industrialist and philanthropist Walter Paepcke.
+```
+
+추출 단계부터 `source_doc`과 `source_sentence`를 강제한 결과다 (§2.5).
+답이 그래프에서 나왔다는 주장을 **원문으로 검증할 수 있다.**
+
 ### 화면 2 — 거절 (R-02)
 
 ![거절 화면](docs/screenshot_refusal.png)
