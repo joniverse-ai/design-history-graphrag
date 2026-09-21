@@ -1,0 +1,173 @@
+{
+  "_meta": {
+    "domain": "design-history",
+    "schema_version": "GUIDE.md §2",
+    "total": 12,
+    "distribution": { "1hop": 2, "2hop": 5, "3hop": 3, "refusal": 2 },
+    "notes": [
+      "모든 문항은 data/docs/ 의 실제 원문에서 근거를 확인한 뒤 작성했다. 코퍼스에 근거가 없는 문항은 넣지 않았다.",
+      "expected_path 는 GUIDE.md §2 의 관계 7종만 사용한다. '-REL->' 은 정방향, '<-REL-' 은 역방향 탐색이다.",
+      "refusal 문항은 그래프에 해당 엣지가 존재하지 않아야 정답이다. 답을 지어내면 오답으로 채점한다.",
+      "MANUFACTURED_BY 는 코퍼스가 얇아(Knoll 4 / Braun 4 / Vitsoe 3 / Herman Miller 2 문서) 의존 문항을 넣지 않았다. REPORT.md 에 코퍼스 한계로 기록한다."
+    ]
+  },
+  "items": [
+    {
+      "id": "H1-01",
+      "hops": 1,
+      "question": "바우하우스를 설립한 사람은 누구인가?",
+      "expected_answer": "발터 그로피우스 (Walter Gropius)",
+      "expected_path": ["Person -FOUNDED-> Institution(바우하우스)"],
+      "evidence": [
+        { "doc": "en_Bauhaus.md", "quote": "founded by architect Walter Gropius in Weimar." }
+      ]
+    },
+    {
+      "id": "H1-02",
+      "hops": 1,
+      "question": "바실리 체어를 디자인한 사람은 누구인가?",
+      "expected_answer": "마르셀 브로이어 (Marcel Breuer)",
+      "expected_path": ["Work(바실리 체어) <-DESIGNED- Person"],
+      "evidence": [
+        { "doc": "en_Marcel_Breuer.md", "quote": "he designed the Wassily Chair and the Cesca Chair, which The New York Times have called some of the most important chairs of the 20th century." }
+      ]
+    },
+    {
+      "id": "H2-01",
+      "hops": 2,
+      "question": "바우하우스에서 가르쳤던 인물이 미국에 세운 학교는 어디인가?",
+      "expected_answer": "뉴 바우하우스 (New Bauhaus, 이후 School of Design → Institute of Design). 설립자는 라슬로 모호이너지.",
+      "expected_path": [
+        "Person(모호이너지) -TAUGHT_AT-> Institution(바우하우스)",
+        "Person(모호이너지) -FOUNDED-> Institution(뉴 바우하우스)"
+      ],
+      "evidence": [
+        { "doc": "en_László_Moholy-Nagy.md", "quote": "Bauhaus foundation course with Josef Albers, and also replaced Paul Klee as Head of the Metal Workshop." },
+        { "doc": "en_László_Moholy-Nagy.md", "quote": "New Bauhaus closed due to financial difficulties, but with Paepcke's continued support, Moholy-Nagy continued the academic program by reopening in February of 1939 as the School of Design in Chicago." }
+      ]
+    },
+    {
+      "id": "H2-02",
+      "hops": 2,
+      "question": "바우하우스를 설립한 사람이 미국에서 가르친 학교는 어디인가?",
+      "expected_answer": "하버드 대학교 디자인 대학원 (Harvard Graduate School of Design)",
+      "expected_path": [
+        "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+        "Person(그로피우스) -TAUGHT_AT-> Institution(하버드 GSD)"
+      ],
+      "evidence": [
+        { "doc": "en_Bauhaus.md", "quote": "founded by architect Walter Gropius in Weimar." },
+        { "doc": "en_Walter_Gropius.md", "quote": "Harvard Graduate School of Design (1937-1952)" }
+      ]
+    },
+    {
+      "id": "H2-03",
+      "hops": 2,
+      "question": "바실리 체어를 디자인한 사람이 가르친 학교는 어디인가?",
+      "expected_answer": "바우하우스 (이후 하버드 디자인 대학원에서도 가르침)",
+      "expected_path": [
+        "Work(바실리 체어) <-DESIGNED- Person(브로이어)",
+        "Person(브로이어) -TAUGHT_AT-> Institution(바우하우스)"
+      ],
+      "evidence": [
+        { "doc": "en_Marcel_Breuer.md", "quote": "eventually teaching in its newly established department of architecture." },
+        { "doc": "en_Marcel_Breuer.md", "quote": "he designed the Wassily Chair and the Cesca Chair" }
+      ]
+    },
+    {
+      "id": "H2-04",
+      "hops": 2,
+      "question": "게리트 리트벨트가 속한 사조에 속한 다른 인물은 누구인가?",
+      "expected_answer": "피트 몬드리안 (Piet Mondrian), 테오 판 두스뷔르흐 (Theo van Doesburg)",
+      "expected_path": [
+        "Person(리트벨트) -BELONGS_TO-> Movement(데 스테일)",
+        "Movement(데 스테일) <-BELONGS_TO- Person"
+      ],
+      "evidence": [
+        { "doc": "en_Gerrit_Rietveld.md", "quote": "De Stijl movement, of which he became a member in 1919" },
+        { "doc": "en_De_Stijl.md", "quote": "Mondrian / Theo van Doesburg (데 스테일 구성원으로 언급됨)" }
+      ]
+    },
+    {
+      "id": "H2-05",
+      "hops": 2,
+      "question": "바우하우스의 마지막 교장이 미국에서 건축학과를 이끈 학교는 어디인가?",
+      "expected_answer": "일리노이 공과대학교 (Illinois Institute of Technology, IIT). 해당 인물은 루트비히 미스 반 데어 로에.",
+      "expected_path": [
+        "Person(미스) -TAUGHT_AT-> Institution(바우하우스)",
+        "Person(미스) -TAUGHT_AT-> Institution(IIT)"
+      ],
+      "evidence": [
+        { "doc": "en_Bauhaus.md", "quote": "Ludwig Mies van der Rohe from 1930 until 1933, when the school was closed" },
+        { "doc": "en_Ludwig_Mies_van_der_Rohe.md", "quote": "Illinois Institute of Technology (IIT) in 1940, Mies remained on IIT's faculty to head its architecture department." }
+      ]
+    },
+    {
+      "id": "H3-01",
+      "hops": 3,
+      "question": "바실리 체어를 디자인한 사람과 같은 학교에서 가르쳤던 인물이 미국에 세운 학교는 어디인가?",
+      "expected_answer": "뉴 바우하우스 (New Bauhaus). 브로이어와 모호이너지가 모두 바우하우스에서 가르쳤고, 모호이너지가 뉴 바우하우스를 세웠다.",
+      "expected_path": [
+        "Work(바실리 체어) <-DESIGNED- Person(브로이어)",
+        "Person(브로이어) -TAUGHT_AT-> Institution(바우하우스)",
+        "Institution(바우하우스) <-TAUGHT_AT- Person(모호이너지) -FOUNDED-> Institution(뉴 바우하우스)"
+      ],
+      "evidence": [
+        { "doc": "en_Marcel_Breuer.md", "quote": "eventually teaching in its newly established department of architecture." },
+        { "doc": "en_László_Moholy-Nagy.md", "quote": "Bauhaus foundation course with Josef Albers, and also replaced Paul Klee as Head of the Metal Workshop." },
+        { "doc": "en_László_Moholy-Nagy.md", "quote": "reopening in February of 1939 as the School of Design in Chicago" }
+      ]
+    },
+    {
+      "id": "H3-02",
+      "hops": 3,
+      "question": "그로피우스가 설립한 학교에서 가르쳤던 인물이 디자인한 작품은 무엇인가?",
+      "expected_answer": "바실리 체어, 체스카 체어 (마르셀 브로이어 작)",
+      "expected_path": [
+        "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+        "Institution(바우하우스) <-TAUGHT_AT- Person(브로이어)",
+        "Person(브로이어) -DESIGNED-> Work(바실리 체어)"
+      ],
+      "evidence": [
+        { "doc": "en_Bauhaus.md", "quote": "founded by architect Walter Gropius in Weimar." },
+        { "doc": "en_Marcel_Breuer.md", "quote": "eventually teaching in its newly established department of architecture." },
+        { "doc": "en_Marcel_Breuer.md", "quote": "he designed the Wassily Chair and the Cesca Chair" }
+      ]
+    },
+    {
+      "id": "H3-03",
+      "hops": 3,
+      "question": "바우하우스를 설립한 사람이 미국에서 가르친 학교에서 함께 가르친 인물이 디자인한 작품은 무엇인가?",
+      "expected_answer": "바실리 체어, 체스카 체어 (브로이어 작). 그로피우스와 브로이어는 하버드 디자인 대학원에서 함께 가르쳤다.",
+      "expected_path": [
+        "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+        "Person(그로피우스) -TAUGHT_AT-> Institution(하버드 GSD) <-TAUGHT_AT- Person(브로이어)",
+        "Person(브로이어) -DESIGNED-> Work(바실리 체어)"
+      ],
+      "evidence": [
+        { "doc": "en_Walter_Gropius.md", "quote": "Harvard Graduate School of Design (1937-1952) and collaborate on projects including The Alan I W Frank House in Pittsburgh" },
+        { "doc": "en_Marcel_Breuer.md", "quote": "he designed the Wassily Chair and the Cesca Chair" }
+      ]
+    },
+    {
+      "id": "R-01",
+      "hops": null,
+      "type": "refusal",
+      "question": "마르셀 브로이어가 디자인한 자동차는 무엇인가?",
+      "expected_answer": "REFUSE — 근거 없음. 브로이어의 DESIGNED 관계는 가구와 건축물뿐이며, 코퍼스에 자동차 관련 근거가 없다.",
+      "expected_path": [],
+      "evidence": [],
+      "refusal_reason": "질문이 전제하는 Work(자동차) 노드가 그래프에 존재하지 않는다. 브로이어의 다른 작품을 답으로 내놓으면 오답이다."
+    },
+    {
+      "id": "R-02",
+      "hops": null,
+      "type": "refusal",
+      "question": "디터 람스가 바우하우스에서 가르친 과목은 무엇인가?",
+      "expected_answer": "REFUSE — 근거 없음. 디터 람스와 바우하우스 사이에 TAUGHT_AT 관계가 존재하지 않는다.",
+      "expected_path": [],
+      "evidence": [],
+      "refusal_reason": "그럴듯하지만 거짓인 전제다. 람스는 브라운·비초에와 연관되며 바우하우스 교수 이력이 없다. 울름 조형대학 등 다른 학교를 끌어와 답하면 오답이다."
+    }
+  ]
+}
