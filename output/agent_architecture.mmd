@@ -1,0 +1,27 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	link_entities(link_entities)
+	expand(expand)
+	collect_evidence(collect_evidence)
+	decide(decide)
+	generate(generate)
+	refuse(refuse)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> link_entities;
+	collect_evidence --> decide;
+	decide -.-> generate;
+	decide -.-> refuse;
+	expand --> collect_evidence;
+	generate -.-> __end__;
+	generate -.-> refuse;
+	link_entities -.-> decide;
+	link_entities -.-> expand;
+	refuse --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
