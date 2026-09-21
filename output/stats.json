@@ -1,0 +1,26 @@
+{
+  "nodes": 1299,
+  "edges": 1311,
+  "type_dist": {
+    "Person": 433,
+    "Work": 736,
+    "Institution": 80,
+    "Movement": 21,
+    "Company": 29
+  },
+  "rel_dist": {
+    "DESIGNED": 901,
+    "STUDIED_AT": 47,
+    "TAUGHT_AT": 122,
+    "MANUFACTURED_BY": 14,
+    "FOUNDED": 99,
+    "BELONGS_TO": 75,
+    "INFLUENCED_BY": 53
+  },
+  "merge_count": 205,
+  "dup_dropped": 44,
+  "post_filter_dropped": 7,
+  "n_components": 246,
+  "largest_component": 655,
+  "isolated": 0
+}
