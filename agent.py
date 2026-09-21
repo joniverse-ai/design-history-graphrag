@@ -40,15 +40,19 @@ GOLDEN_PATH = ROOT / "data" / "goldenset.json"
 RUNS_PATH = ROOT / "output" / "runs.jsonl"
 DIAGRAM_PATH = ROOT / "output" / "agent_architecture.mmd"
 
-MODEL = "gemini-3.1-flash-lite"
-MAX_HOPS = 3
-MAX_MOVEMENT_TRANSIT = 1
-MAX_PATHS = 400          # visited_paths 저장 상한 (폭발 방지)
-FANOUT_CAP = 12          # GUIDE.md §5 v2: 노드당 이웃 확장 상한 (관계 타입 우선)
-EVIDENCE_CAP = 40        # GUIDE.md §5 v2: LLM에 넘기는 근거 삼중항 상한 (경로상 엣지 우선)
+CONFIG_PATH = ROOT / "config.json"
+CFG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 
-RELATIONS = {"STUDIED_AT", "TAUGHT_AT", "FOUNDED", "BELONGS_TO",
-             "DESIGNED", "MANUFACTURED_BY", "INFLUENCED_BY"}
+MODEL = CFG["generation"]["model"]
+
+_tv = CFG["traversal"]          # GUIDE.md §5 v2
+MAX_HOPS = _tv["max_hops"]
+MAX_MOVEMENT_TRANSIT = _tv["max_movement_transit"]
+MAX_PATHS = _tv["max_paths"]
+FANOUT_CAP = _tv["fanout_cap"]
+EVIDENCE_CAP = _tv["evidence_cap"]
+
+RELATIONS = set(CFG["schema"]["relations"])
 
 # 질문 키워드 -> 요구 관계 타입 (decide 단계의 관계 적합성 검사 + LLM 힌트)
 REL_KEYWORDS: List[Tuple[str, List[str]]] = [

@@ -54,20 +54,30 @@ streamlit run app.py
 
 ```
 .
-├── GUIDE.md                 # 워커 공통 기준 (스키마·코퍼스·멀티홉 정책·골든셋·평가 설계)
-├── app.py                   # W5 Streamlit 데모 (answer_question import, 수정 금지 파일 아님)
-├── agent.py                 # W3 에이전트 진입점 answer_question() — 수정 금지
-├── build_graph.py           # W2 스키마 제한 추출 + 정규화 — 수정 금지
+├── REPORT.md                # 프로젝트 리포트 (주제·스키마·측정 결과·구조도·회고)
+├── GUIDE.md                 # 설계 기준 (스키마·코퍼스·멀티홉 정책·골든셋·평가 설계)
+├── config.json              # 도메인에 묶인 값 (노드·관계·반경·상한·정규화 목록)
+├── build_graph.py           # 스키마 제한 추출 + 정규화 → graph.graphml
+├── agent.py                 # 멀티홉 에이전트 (LangGraph). 진입점 answer_question()
+├── evaluate.py              # 홉수별 평가 + basic RAG 대조 → eval.json
+├── app.py                   # Streamlit 데모
+├── requirements.txt
+├── scripts/
+│   └── collect_corpus.py    # 한/영 위키백과 코퍼스 수집
 ├── data/
 │   ├── docs/                # 원문 코퍼스 70건 (한/영 위키)
 │   ├── goldenset.json       # 골든셋 12문항 (1홉 2 · 2홉 5 · 3홉 3 · 거절 2)
 │   ├── aliases.json         # 한영 별칭 사전 (개체 연결용)
 │   └── manifest.json        # 코퍼스 채택·탈락 로그
 └── output/
-    ├── graph.graphml        # 지식그래프 (1299 노드 / 1311 엣지) — 수정 금지
-    ├── runs.jsonl           # 골든셋 12문항 실행 기록 (반환 dict 실제 스키마 확인용)
-    ├── triples.jsonl        # 정규화 전 원시 삼중항
-    ├── merge_log.json       # 별칭 병합 로그
+    ├── graph.graphml        # 지식그래프 (1,299 노드 / 1,311 엣지)
+    ├── triples.jsonl        # 정규화 전 원시 삼중항 1,362건
+    ├── merge_log.json       # 별칭 병합 로그 205건
+    ├── runs.jsonl           # 골든셋 12문항 실행 기록
+    ├── eval.json            # 평가 결과 (홉수별·재현율·정밀도·실패 분류)
+    ├── eval_report.md       # 사람이 읽는 평가 요약
     ├── stats.json           # 그래프 통계
     └── agent_architecture.mmd  # LangGraph 구조 다이어그램
 ```
+
+도메인을 바꾸려면 `config.json`의 노드·관계·정규화 목록을 갈아끼우고 코퍼스를 다시 모으면 된다.

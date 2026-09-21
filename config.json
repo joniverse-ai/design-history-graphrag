@@ -1,0 +1,69 @@
+{
+  "domain": "design-history",
+  "_comment": "도메인에 묶인 값을 한곳에 모은다. build_graph.py 와 agent.py 가 여기서 읽는다. 다른 도메인으로 옮길 때 이 파일만 갈아끼우면 된다.",
+
+  "schema": {
+    "node_types": ["Person", "Movement", "Institution", "Work", "Company"],
+    "relations": [
+      "STUDIED_AT", "TAUGHT_AT", "FOUNDED", "BELONGS_TO",
+      "DESIGNED", "MANUFACTURED_BY", "INFLUENCED_BY"
+    ],
+    "relation_constraints": {
+      "STUDIED_AT":      { "subject": ["Person"],            "object": ["Institution"] },
+      "TAUGHT_AT":       { "subject": ["Person"],            "object": ["Institution"] },
+      "FOUNDED":         { "subject": ["Person"],            "object": ["Institution", "Company"] },
+      "BELONGS_TO":      { "subject": ["Person", "Work"],    "object": ["Movement"] },
+      "DESIGNED":        { "subject": ["Person"],            "object": ["Work"] },
+      "MANUFACTURED_BY": { "subject": ["Work"],              "object": ["Company"] },
+      "INFLUENCED_BY":   { "subject": ["Person", "Movement"],"object": ["Person", "Movement"] }
+    }
+  },
+
+  "traversal": {
+    "_comment": "GUIDE.md §5 (v2). 차수 기반 허브 경유 금지는 폐기했고 팬아웃·근거 상한으로 대체했다.",
+    "max_hops": 3,
+    "max_movement_transit": 1,
+    "max_paths": 400,
+    "fanout_cap": 12,
+    "evidence_cap": 40
+  },
+
+  "extraction": {
+    "chunk_chars": 9000,
+    "sleep_between_calls": 2.0,
+    "max_retries_429": 6,
+    "model_chain": ["gemini-2.5-flash", "gemini-3.1-flash-lite", "gemini-3.6-flash"]
+  },
+
+  "generation": {
+    "model": "gemini-3.1-flash-lite"
+  },
+
+  "normalization": {
+    "_comment": "GUIDE.md §4. 일반명사·스키마 밖 인물을 노드로 만들지 않는다.",
+    "drop_exact": ["세기말", "fin de siècle", "fin de siecle"],
+    "work_generic_exact": ["desk", "desks", "vase", "vases", "pitcher", "lamp", "lamps"],
+    "work_generic_substr": [
+      "furniture designs", "modernist", "his designs", "her designs",
+      "several works", "many works", "various works", "numerous works",
+      "design work", "design works", "his work", "early work"
+    ],
+    "generic_block": [
+      "디자인", "건축", "예술", "가구", "의자", "추상미술", "그래픽 디자인",
+      "공업 디자인", "산업 디자인", "모더니즘", "도시 계획가", "도시계획가",
+      "미술", "공예", "사진", "회화", "조각", "음악", "오페라", "타이포그래피",
+      "실내 디자인", "도시 계획", "도시계획", "패션", "영화",
+      "design", "architecture", "art", "arts", "furniture", "chair", "chairs",
+      "abstract art", "graphic design", "industrial design", "modernism",
+      "urban planner", "urban planning", "painting", "sculpture", "music",
+      "opera", "photography", "typography", "craft", "crafts", "city", "cities",
+      "country", "germany", "독일", "미국", "프랑스"
+    ],
+    "non_designer_block": [
+      "alban berg", "alban maria johannes berg", "arnold schoenberg",
+      "arnold schonberg", "anton webern", "gustav mahler",
+      "알반 베르크", "알반 마리아 요하네스 베르크", "아르놀트 쇤베르크",
+      "쇤베르크", "안톤 베베른", "베베른", "아르놀트 쇤베르크와"
+    ]
+  }
+}

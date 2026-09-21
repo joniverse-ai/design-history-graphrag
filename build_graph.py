@@ -31,53 +31,29 @@ MERGE_LOG_PATH = OUT / "merge_log.json"
 STATS_PATH = OUT / "stats.json"
 MODEL_USED_PATH = OUT / "model_used.json"
 
-MODEL_CHAIN = ["gemini-2.5-flash", "gemini-3.1-flash-lite", "gemini-3.6-flash"]
-CHUNK_CHARS = 9000
-SLEEP_BETWEEN_CALLS = 2.0
-MAX_RETRIES_429 = 6
+CONFIG_PATH = ROOT / "config.json"
+CFG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 
-NODE_TYPES = {"Person", "Movement", "Institution", "Work", "Company"}
-RELATIONS = {"STUDIED_AT", "TAUGHT_AT", "FOUNDED", "BELONGS_TO",
-             "DESIGNED", "MANUFACTURED_BY", "INFLUENCED_BY"}
+_ex = CFG["extraction"]
+MODEL_CHAIN = _ex["model_chain"]
+CHUNK_CHARS = _ex["chunk_chars"]
+SLEEP_BETWEEN_CALLS = _ex["sleep_between_calls"]
+MAX_RETRIES_429 = _ex["max_retries_429"]
+
+NODE_TYPES = set(CFG["schema"]["node_types"])
+RELATIONS = set(CFG["schema"]["relations"])
 # relation -> (allowed subject types, allowed object types)
 REL_TYPE_CONSTRAINTS = {
-    "STUDIED_AT": ({"Person"}, {"Institution"}),
-    "TAUGHT_AT": ({"Person"}, {"Institution"}),
-    "FOUNDED": ({"Person"}, {"Institution", "Company"}),
-    "BELONGS_TO": ({"Person", "Work"}, {"Movement"}),
-    "DESIGNED": ({"Person"}, {"Work"}),
-    "MANUFACTURED_BY": ({"Work"}, {"Company"}),
-    "INFLUENCED_BY": ({"Person", "Movement"}, {"Person", "Movement"}),
+    rel: (set(c["subject"]), set(c["object"]))
+    for rel, c in CFG["schema"]["relation_constraints"].items()
 }
 
-# Exact names dropped at normalization (generic/era terms the LLM typed as nodes)
-DROP_EXACT = {"세기말", "fin de siècle", "fin de siecle"}
-# Lowercase common nouns the LLM typed as Work (exact match, case-insensitive)
-WORK_GENERIC_EXACT = {"desk", "desks", "vase", "vases", "pitcher", "lamp", "lamps"}
-GENERIC_BLOCK = {
-    "디자인", "건축", "예술", "가구", "의자", "추상미술", "그래픽 디자인",
-    "공업 디자인", "산업 디자인", "모더니즘", "도시 계획가", "도시계획가",
-    "미술", "공예", "사진", "회화", "조각", "음악", "오페라", "타이포그래피",
-    "실내 디자인", "도시 계획", "도시계획", "패션", "영화",
-    "design", "architecture", "art", "arts", "furniture", "chair", "chairs",
-    "abstract art", "graphic design", "industrial design", "modernism",
-    "urban planner", "urban planning", "painting", "sculpture", "music",
-    "opera", "photography", "typography", "craft", "crafts", "city", "cities",
-    "country", "germany", "독일", "미국", "프랑스",
-}
-# Non-designers that leaked into corpus (composers etc.): never Person nodes
-NON_DESIGNER_BLOCK = {
-    "alban berg", "alban maria johannes berg", "arnold schoenberg",
-    "arnold schonberg", "anton webern", "gustav mahler",
-    "알반 베르크", "알반 마리아 요하네스 베르크", "아르놀트 쇤베르크",
-    "쇤베르크", "안톤 베베른", "베베른", "아르놀트 쇤베르크와",
-}
-# Work-typed names that are generic descriptions, not citable works
-WORK_GENERIC_SUBSTR = {
-    "furniture designs", "modernist", "his designs", "her designs",
-    "several works", "many works", "various works", "numerous works",
-    "design work", "design works", "his work", "early work",
-}
+_nm = CFG["normalization"]
+DROP_EXACT = set(_nm["drop_exact"])
+WORK_GENERIC_EXACT = set(_nm["work_generic_exact"])
+WORK_GENERIC_SUBSTR = set(_nm["work_generic_substr"])
+GENERIC_BLOCK = set(_nm["generic_block"])
+NON_DESIGNER_BLOCK = set(_nm["non_designer_block"])
 
 SYSTEM_PROMPT = """You extract design-history knowledge triples from a Wikipedia excerpt.
 Return ONLY JSON matching the schema: {"triples": [{subject, subject_type, relation, object, object_type, source_sentence}]}.
