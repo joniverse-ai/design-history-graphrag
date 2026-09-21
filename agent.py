@@ -29,6 +29,7 @@ LLM: google-genai, gemini-3.1-flash-lite. 키는 환경변수 GOOGLE_GENERATIVE_
 import json
 import os
 import re
+import time
 import unicodedata
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -43,7 +44,10 @@ DIAGRAM_PATH = ROOT / "output" / "agent_architecture.mmd"
 CONFIG_PATH = ROOT / "config.json"
 CFG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 
-MODEL = CFG["generation"]["model"]
+_gen = CFG["generation"]
+MODEL = _gen["model"]
+LLM_MAX_RETRIES = _gen.get("llm_max_retries", 3)
+LLM_RETRY_BACKOFF = _gen.get("llm_retry_backoff", 1.5)
 
 _tv = CFG["traversal"]          # GUIDE.md §5 v2
 MAX_HOPS = _tv["max_hops"]
@@ -273,6 +277,7 @@ class AgentState(TypedDict, total=False):
     refused: bool
     refusal_reason: str
     llm_reason: str
+    error: str          # "llm_unavailable" — 근거 부재 거절과 구분
 
 
 def _edge_triples(cur: str, nb: str) -> List[Dict[str, Any]]:
@@ -575,22 +580,34 @@ def node_generate(state: AgentState) -> Dict[str, Any]:
           '"used_path": "...", "reason": "..."}. '
           "answer는 한국어로 간결히. answerable=false면 answer는 빈 문자열."
     )
-    try:
-        from google.genai import types
-        client = _llm_client()
-        cfg = types.GenerateContentConfig(
-            system_instruction=GENERATE_SYS,
-            response_mime_type="application/json",
-            temperature=0.0,
-        )
-        resp = client.models.generate_content(model=MODEL, contents=prompt, config=cfg)
-        data = json.loads(resp.text)
-        if not isinstance(data, dict):
-            raise ValueError("LLM response is not a JSON object")
-    except Exception as e:  # noqa: BLE001 — LLM 실패는 거절로 전환 (지어내지 않음)
-        return {"refused": True, "answer": "",
-                "refusal_reason": f"답변 생성용 LLM 호출에 실패했습니다({type(e).__name__}: {str(e)[:150]}). "
-                                  "근거만으로 답을 만들 수 없어 거절합니다."}
+    # 503/429 같은 일시 오류는 재시도한다. 무료 티어에서 흔하다.
+    data, last_err = None, None
+    for attempt in range(LLM_MAX_RETRIES):
+        try:
+            from google.genai import types
+            client = _llm_client()
+            cfg = types.GenerateContentConfig(
+                system_instruction=GENERATE_SYS,
+                response_mime_type="application/json",
+                temperature=0.0,
+            )
+            resp = client.models.generate_content(model=MODEL, contents=prompt, config=cfg)
+            data = json.loads(resp.text)
+            if not isinstance(data, dict):
+                raise ValueError("LLM response is not a JSON object")
+            break
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+            if attempt < LLM_MAX_RETRIES - 1:
+                time.sleep(LLM_RETRY_BACKOFF * (2 ** attempt))
+    if data is None:
+        # 답을 지어내지 않으므로 refused 이지만, 근거 부재로 인한 거절과는 다른 상태다.
+        # error 필드로 구분해 UI 와 평가가 둘을 섞지 않게 한다.
+        return {"refused": True, "answer": "", "error": "llm_unavailable",
+                "refusal_reason": f"답변 생성용 LLM 호출에 실패했습니다"
+                                  f"({type(last_err).__name__}: {str(last_err)[:150]}). "
+                                  f"{LLM_MAX_RETRIES}회 재시도 후에도 응답을 받지 못했습니다. "
+                                  "근거 부재로 인한 거절이 아니라 일시적 오류입니다."}
     if not data.get("answerable"):
         return {"refused": True, "answer": "",
                 "llm_reason": str(data.get("reason", "")),
@@ -611,6 +628,10 @@ def node_refuse(state: AgentState) -> Dict[str, Any]:
     fc = state.get("fanout_truncations", 0)
     ec = state.get("evidence_truncated", 0)
     base = state.get("refusal_reason", REFUSAL_PHRASE)
+    if state.get("error") == "llm_unavailable":
+        # 일시적 오류에 "근거를 찾지 못했습니다"를 붙이면 근거 부재 거절과 구분되지 않는다.
+        return {"answer": base, "refused": True, "refusal_reason": base,
+                "error": "llm_unavailable"}
     if not base.startswith(REFUSAL_PHRASE):
         base = f"{REFUSAL_PHRASE}: {base}"
     detail = (f" [탐색 현황] 시작 개체: {starts if starts else '연결 실패'} / "
@@ -670,6 +691,9 @@ def answer_question(question: str) -> dict:
         "answer": out.get("answer", ""),
         "refused": bool(out.get("refused", False)),
         "refusal_reason": out.get("refusal_reason", ""),
+        # 근거 부재 거절(None)과 LLM 일시 오류("llm_unavailable")를 구분한다.
+        # 평가에서 후자를 정상 거절로 세면 점수가 오염된다.
+        "error": out.get("error"),
         "truncated_by_cap": bool(out.get("truncated_by_cap", False)),
         "fanout_truncations": out.get("fanout_truncations", 0),
         "evidence_truncated": out.get("evidence_truncated", 0),

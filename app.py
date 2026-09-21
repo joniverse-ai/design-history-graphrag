@@ -11,6 +11,10 @@
 키: GOOGLE_GENERATIVE_AI_API_KEY (환경변수로만, 코드에 넣지 않음)
 """
 
+# `str | None` 같은 어노테이션은 Python 3.10 미만에서 정의 시점에 TypeError 를 낸다.
+# 이 import 가 평가를 문자열로 지연시켜 3.9 에서도 동작하게 한다.
+from __future__ import annotations
+
 import json
 import os
 from pathlib import Path
@@ -140,7 +144,12 @@ def render_result(result: dict):
 
     # ---- 답변 / 거절
     st.subheader("💬 답변")
-    if refused:
+    if refused and result.get("error") == "llm_unavailable":
+        # 근거 부재로 인한 거절이 아니라 일시적 오류다. 섞어 보여주면 시스템을 잘못 표현하게 된다.
+        st.warning("⚠️ 일시적 오류 — 답변을 생성하지 못했습니다")
+        st.write(result.get("refusal_reason") or "")
+        st.info("근거가 없어서 거절한 것이 아닙니다. 잠시 후 다시 질문해 주세요.")
+    elif refused:
         st.error("근거를 찾지 못했습니다")
         st.write(result.get("refusal_reason") or result.get("answer") or "")
         st.subheader("🔍 어디까지 탐색했나")

@@ -36,7 +36,10 @@
   },
 
   "generation": {
-    "model": "gemini-3.1-flash-lite"
+    "model": "gemini-3.1-flash-lite",
+    "_comment": "503/429 는 무료 티어에서 흔하다. 재시도하지 않으면 일시 오류가 '근거 없음' 거절로 둔갑한다.",
+    "llm_max_retries": 3,
+    "llm_retry_backoff": 1.5
   },
 
   "normalization": {
