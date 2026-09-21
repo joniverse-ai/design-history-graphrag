@@ -1,0 +1,1244 @@
+{
+ "meta": {
+  "model": "gemini-3.1-flash-lite",
+  "baseline": "BM25(rank_bm25) top-5 chunks, no graph, same LLM(gemini-3.1-flash-lite), same prompt skeleton (text evidence only)",
+  "n_items": 12,
+  "buckets": [
+   "1hop",
+   "2hop",
+   "3hop",
+   "refusal"
+  ],
+  "note": "홉수별 분리 보고만 한다. 전체 평균(accuracy 평균)은 과제 실격 조항이므로 산출하지 않는다."
+ },
+ "grading_policy": {
+  "judge": "rule-based keyword match (no LLM judge — stricter and reproducible)",
+  "verdicts": [
+   "correct",
+   "partial",
+   "wrong"
+  ],
+  "normal_items": "정답(required 핵심 개체)이 모두 답변에 포함되면 correct, 일부만 포함되면 partial, 없으면 wrong. required 는 기대 정답의 핵심 개체(한영 표기 모두 허용)이며, 부가 설명이 붙어도 감점하지 않으나 핵심 개체가 빠지면 정답으로 치지 않는다.",
+  "refusal_items": "refused=True 이면 correct, 답을 내놓았으면(지어냄) wrong. partial 없음. 거절문에 탐색 현황이 붙는 것은 허용.",
+  "strictness_note": "점수를 잘 보이게 기준을 완화하지 않는다. H2-04 처럼 복수 정답이 허용된 문항도 기대 집합(expected_any 중 1개 이상)이 들어가야 correct 다."
+ },
+ "accept_lists": {
+  "H1-01": {
+   "required": [
+    "그로피우스",
+    "gropius"
+   ],
+   "expected_any": []
+  },
+  "H1-02": {
+   "required": [
+    "브로이어",
+    "breuer"
+   ],
+   "expected_any": []
+  },
+  "H2-01": {
+   "required": [
+    "뉴바우하우스",
+    "newbauhaus"
+   ],
+   "expected_any": []
+  },
+  "H2-02": {
+   "required": [
+    "하버드",
+    "harvard"
+   ],
+   "expected_any": []
+  },
+  "H2-03": {
+   "required": [
+    "바우하우스",
+    "bauhaus"
+   ],
+   "expected_any": []
+  },
+  "H2-04": {
+   "required": [],
+   "expected_any": [
+    "몬드리안",
+    "mondrian",
+    "두스뷔르흐",
+    "두스부르크",
+    "doesburg"
+   ]
+  },
+  "H2-05": {
+   "required": [
+    "일리노이",
+    "illinois",
+    "iit"
+   ],
+   "expected_any": []
+  },
+  "H3-01": {
+   "required": [
+    "뉴바우하우스",
+    "newbauhaus"
+   ],
+   "expected_any": []
+  },
+  "H3-02": {
+   "required": [],
+   "expected_any": [
+    "바실리",
+    "wassily",
+    "체스카",
+    "cesca"
+   ]
+  },
+  "H3-03": {
+   "required": [],
+   "expected_any": [
+    "바실리",
+    "wassily",
+    "체스카",
+    "cesca"
+   ]
+  },
+  "R-01": {
+   "required": [],
+   "expected_any": []
+  },
+  "R-02": {
+   "required": [],
+   "expected_any": []
+  }
+ },
+ "bridge_keys": {
+  "H1-01": [
+   "그로피우스",
+   "gropius"
+  ],
+  "H1-02": [
+   "브로이어",
+   "breuer"
+  ],
+  "H2-01": [
+   "모호이너지",
+   "모홀리",
+   "moholy"
+  ],
+  "H2-02": [
+   "하버드",
+   "harvard"
+  ],
+  "H2-03": [
+   "브로이어",
+   "breuer"
+  ],
+  "H2-04": [
+   "리트벨트",
+   "rietveld"
+  ],
+  "H2-05": [
+   "일리노이",
+   "illinois",
+   "iit"
+  ],
+  "H3-01": [
+   "브로이어",
+   "breuer"
+  ],
+  "H3-02": [
+   "브로이어",
+   "breuer"
+  ],
+  "H3-03": [
+   "브로이어",
+   "breuer"
+  ]
+ },
+ "items": [
+  {
+   "qid": "H1-01",
+   "bucket": "1hop",
+   "hops": 1,
+   "question": "바우하우스를 설립한 사람은 누구인가?",
+   "expected_answer": "발터 그로피우스 (Walter Gropius)",
+   "expected_path": [
+    "Person -FOUNDED-> Institution(바우하우스)"
+   ],
+   "expected_atomics": [
+    "Person -FOUNDED-> Institution(바우하우스)"
+   ],
+   "expected_atomics_in_graph": [
+    true
+   ],
+   "graphrag": {
+    "answer": "발터 그로피우스(Walter Gropius)",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(그로피우스, gropius). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true
+    ],
+    "path_precision": 0.15,
+    "n_evidence_on_path": 6,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 102,
+    "evidence_truncated": 331
+   },
+   "baseline": {
+    "answer": "발터 그로피우스",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(그로피우스). 정답.",
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "llm_reason": "제시된 텍스트 근거 [1]에 따르면, 그로피우스가 1919년 독일 바이마르에 바우하우스를 창립했다고 명시되어 있습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_라슬로_모홀리나지.md",
+      "score": 6.534,
+      "text": "라슬로 모홀리나지(헝가리어: Moholy-Nagy László 모홀리너지 라슬로[*], 헝가리어 발음: [ˈmoholiˌnɒɟ ˈlaːsloː ], 영어: László Moholy-Nagy, 1895년 7월 20일~1946년 11월 24일)는 헝가리의 화가이자 사진작가이다. 헝가리 출생. 처음에는 법률가가 되려고 하였으나 1915년 미술로 전환하여 1917년 러시아의 구성주의 및 말레비치의 영향을 받았다. 1920년에 베를린으로 이주하였고 이 시기의 그의 작품에는 몬드리안의 영향을 볼 수 있다. 1923년 바우하우스에 초대되어 19"
+     },
+     {
+      "doc": "ko_발터_그로피우스.md",
+      "score": 6.448,
+      "text": "바우하우스(Bauhaus) 창립, 1919\n그로피우스는 1919년 교장으로서 독일의 바이마르(Weimar)에 바우하우스(Bauhaus)를 창립하게 된다. \"짓다\"라는 뜻의 \"바우(Bau)\"와 \"집\"이라는 \"하우스(Haus)\"의 합성어인 바우하우스는 건축을 궁극의 목표로 하고 창립되었다. 그럼에도 불구하고 당시 바우하우스에는 건축과가 없었는데 그 이유는 \"모든 예술의 결합이 건축이다\"라는 발상에서 각 예술적 요소들을 통달한다면 자연적으로 건축적 능력이 오른다고 생각했기 때문이다. 그로피우스는 바우하우스를 창립하며 교수들을 초빙하고 선"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 5.773,
+      "text": "# 비초에\n언어: ko\n분류: 1959년 설립된 기업, 1959년 설립된 제조 기업, 가구 제조업체, 가구 회사, 산업 디자인\n비초에(독일어: Vitsœ) 또는 비초에-자프(독일어: Vitsœ-Zapf), 비초에 & 자프(독일어: Vitsœ & Zapf)는 독일에서 설립된 영국의 가구 회사로 디터 람스와의 협력으로 유명하며 독일의 클래식 디자인 가구로 유명하다.\n역사\n비초에 & 자프(Vitsœ & Zapf)는 브라운에서 근무하고 있던 디터 람스가 디자인한 가구를 생산하기 위해 덴마크 가구 딜러 닐스 비초에(Niels Vitsœ)와 "
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 5.118,
+      "text": "新바우하우스\n폐쇄 이후 학교의 체제를 지닌 바우하우스의 후신을 자처하는 기관으로는 미국의 뉴 바우하우스와 독일의 울름조형대학을 들 수 있다. 바우하우스의 교육자들은 미국으로 대거 이주, 미국디자인 교육에 혁신의 바람을 일으켰고, 모홀리 나기는 뉴 바우하우스를 설립하면서 바우하우스식 교육을 신대륙에 이식시켰다. 뉴 바우하우스는 재능 있는 학생들을 요구했으며, 수공업 또는 기계공업 제품의 디자이너, 박람회, 무대, 전시, 상업미술, 타이포그래피, 사진 등의 디자이너, 그리고 조각가, 화가, 건축가의 양성을 목표로 했다. 모홀리 나기는 "
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 4.852,
+      "text": "1928년부터 1930년까지 슐레머는 에센의 폴크방 박물관에 있는 방을 위한 9점의 벽화를 제작했다. 1929년 바우하우스를 떠난 그는 브레슬라우 아카데미에서 《바우하우스 계단》(Bauhaustreppe, 1932, 뉴욕 근대미술관 소장) 등 대표작을 그렸다. 그러나 1929년 월스트리트 대폭락 이후 재정난으로 학교가 폐교되자, 1932년 베를린의 ‘자유·응용미술 통합국립학교(Vereinigte Staatsschulen für freie und angewandete Kunst)’ 교수로 임명되었으나, 1933년 나치 정권의 압력으로"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H1-02",
+   "bucket": "1hop",
+   "hops": 1,
+   "question": "바실리 체어를 디자인한 사람은 누구인가?",
+   "expected_answer": "마르셀 브로이어 (Marcel Breuer)",
+   "expected_path": [
+    "Work(바실리 체어) <-DESIGNED- Person"
+   ],
+   "expected_atomics": [
+    "Work(바실리 체어) <-DESIGNED- Person"
+   ],
+   "expected_atomics_in_graph": [
+    true
+   ],
+   "graphrag": {
+    "answer": "마르셀 브로이어",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(브로이어). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true
+    ],
+    "path_precision": 0.025,
+    "n_evidence_on_path": 1,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 6,
+    "evidence_truncated": 24
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "핵심 개체가 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (브로이어, breuer)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "제시된 텍스트 근거 어디에서도 바실리 체어(Wassily Chair)를 디자인한 사람에 대한 정보를 찾을 수 없습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_비초에.md",
+      "score": 6.777,
+      "text": "비초에의 대표적인 제품으로는 디터 람스가 디자인하여 1960년에 출시한 606 유니버설 선반(606 Universal Shelving System)과 1962년에 출시한 620 소파(620 Chair Programme)와 621 테이블(621 Table)이 있다.  디터람스가 디자인한 620 시스템은 현재 독일 연방 총리실에서 사용되고 있다.\n미국의 디자인 평론가인 스펜서 베일리(Spencer Bailey)는 이 시스템을 \"내가 생각할 수 있는 가장 기능적이고 잘 구축된 디자인 중 하나\"라고 평가하기도 했다.\n각주"
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 6.388,
+      "text": "디자인\n바우하우스는 이전의 장인의 시대에서 산업 디자인의 시대로 넘어가는 분수령의 역할을 하면서 현대 디자인의 상징으로 자리 잡았다. 14년이라는 짧은 기간 동안만 유지된 학교이지만, 이후 현대 디자인에 엄청난 영향을 끼쳤는데, 바우하우스 디자인의 특징은 형태는 기능을 따른다는 말처럼 단순화되고 기능적인 형태미로 드러난다. 기능을 따른 형태의 디자인을 보여주는 예는 요즘도 많이 찾아볼 수 있다. 대표적인 예가 바로 다이슨의 청소기다. 이 제품은 최대의 기능을 이끌어내기 위해 필수 불가결한 요소만을 남김으로써 독특한 외형을 자랑한다."
+     },
+     {
+      "doc": "ko_프랭크_로이드_라이트.md",
+      "score": 5.89,
+      "text": "과도기와 실험 (1893년 ~ 1900년)\n애들러와 설리번을 떠난 라이트는 시카고 랜돌프 가에 있는 설리번이 디자인한 쉴러 빌딩 최상층에 자신의 건축 사무소를 차렸다. 라이트가 이 빌딩의 위치가 애들러와 설리번에서의 사무실을 생각나게 했기 때문에 이 빌딩에 사무실을 구했다. 세실 커윈이 라이트를 따라 이 사무실로 옮겨왔지만, 이 둘은 각자 독립적으로 일했고 서로를 파트너라고 생각하지 않았다.\n주요 작품\n구겐하임 미술관\n카우프만 저택 (낙수장)\n라킨 빌딩\n유니티 교회\n탈리어센 웨스트\n플로리다 서던 컬리지\n존슨 빌딩\n데이코쿠 호텔\n자유"
+     },
+     {
+      "doc": "ko_아르누보.md",
+      "score": 5.622,
+      "text": "역사\n기원\n아르누보는 윌리엄 모리스의 꽃무늬 디자인, 그리고 모리스의 제자들에 의해 설립된 아트 앤 크래프트 운동에 뿌리를 두고 있다. 모리스의 인테리어 디디자인과 필립 웹(1859년)의 레드 하우스(Red House), 제임스 애벗 맥닐 휘슬러의 피콕 룸 등이 아르누보의 선구자격에 해당되는 작품이다. 아트 앤 크래프트 운동은 또한 단테이 게이브리얼 로세티와 에드워드 번 존스를 비롯한 라파엘 전파 화가들과 셀루인 이미지 (Selwyn Image), 헤이우드 섬너(Heywood Sumner), 월터 크레인, 알프레드 길버트 (Alfr"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 4.899,
+      "text": "# 비초에\n언어: ko\n분류: 1959년 설립된 기업, 1959년 설립된 제조 기업, 가구 제조업체, 가구 회사, 산업 디자인\n비초에(독일어: Vitsœ) 또는 비초에-자프(독일어: Vitsœ-Zapf), 비초에 & 자프(독일어: Vitsœ & Zapf)는 독일에서 설립된 영국의 가구 회사로 디터 람스와의 협력으로 유명하며 독일의 클래식 디자인 가구로 유명하다.\n역사\n비초에 & 자프(Vitsœ & Zapf)는 브라운에서 근무하고 있던 디터 람스가 디자인한 가구를 생산하기 위해 덴마크 가구 딜러 닐스 비초에(Niels Vitsœ)와 "
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H2-01",
+   "bucket": "2hop",
+   "hops": 2,
+   "question": "바우하우스에서 가르쳤던 인물이 미국에 세운 학교는 어디인가?",
+   "expected_answer": "뉴 바우하우스 (New Bauhaus, 이후 School of Design → Institute of Design). 설립자는 라슬로 모호이너지.",
+   "expected_path": [
+    "Person(모호이너지) -TAUGHT_AT-> Institution(바우하우스)",
+    "Person(모호이너지) -FOUNDED-> Institution(뉴 바우하우스)"
+   ],
+   "expected_atomics": [
+    "Person(모호이너지) -TAUGHT_AT-> Institution(바우하우스)",
+    "Person(모호이너지) -FOUNDED-> Institution(뉴 바우하우스)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "뉴 바우하우스(New Bauhaus)",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(뉴바우하우스, newbauhaus). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true,
+     true
+    ],
+    "path_precision": 0.05,
+    "n_evidence_on_path": 2,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 101,
+    "evidence_truncated": 309
+   },
+   "baseline": {
+    "answer": "뉴 바우하우스",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(뉴바우하우스). 정답.",
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "llm_reason": "제시된 텍스트 [3]에 따르면 바우하우스에서 가르쳤던 모홀리 나기가 미국에 '뉴 바우하우스'를 설립하여 바우하우스식 교육을 이식시켰다고 명시되어 있습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 10.794,
+      "text": "건축\n바우하우스의 절제된 기하학적 형태와 건축에 대한 경제적, 기술적 이익에 대한 관심 등은 국제건축양식의 모태가 되었고, 교육적 차원에서 이식된 바우하우스의 건축디자인 원리 및 이념은 현대건축의 급변하는 추세 속에서 그 전개발전을 계속해왔다. 1960년 이후의 건축물을 중심으로 살펴보았을 때 바우하우스 건축디자인 원리의 현대적 전개방식은 과학기술의 형상적 상징화, 기술공학적 해결방식의 추구, 건축구성요소 공업생산의 보편화, 기능복합체로써의 건축구성 기하학적 추상성의 계승 등으로 요약된다.\n또한 바우하우스에서 가르쳤던 루드비히 힐버"
+     },
+     {
+      "doc": "ko_루트비히_미스_판_데어_로에.md",
+      "score": 10.78,
+      "text": "미국으로의 이민\n1929년 이후 세계 대공황으로 인해 설계 의뢰의 기회가 줄어들었다. 1930년대 초반에 미스는 친구이자 경쟁자인 발터 그로피우스의 요청으로 쇠락해가는 바우하우스에서 잠시 동안 마지막 교장이 되었다. 1933년 나치 정권의 정치적 압력은 이전에 이 학교가 사회주의, 공산주의, 그밖의 진보적인 이데올로기와 연관이 있었다는 것을 빌미로 미스가 정부가 출연한 학교의 문을 닫게 만들었다. 이때 미스는 매우 적은 수의 설계를 맡았다. (그 중 하나는 필립 존슨의 뉴욕 아파트였다.) 나치 정권은 미스의 양식이 \"독일적\" 성격이"
+     },
+     {
+      "doc": "ko_아돌프_로스.md",
+      "score": 8.948,
+      "text": "# 아돌프 로스\n언어: ko\n분류: 건축 평론가, 근대 건축가, 미국에 거주한 오스트리아인, 아르누보 건축가, 오스트리아의 건축가, 프랑스에 거주한 오스트리아인"
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 6.099,
+      "text": "新바우하우스\n폐쇄 이후 학교의 체제를 지닌 바우하우스의 후신을 자처하는 기관으로는 미국의 뉴 바우하우스와 독일의 울름조형대학을 들 수 있다. 바우하우스의 교육자들은 미국으로 대거 이주, 미국디자인 교육에 혁신의 바람을 일으켰고, 모홀리 나기는 뉴 바우하우스를 설립하면서 바우하우스식 교육을 신대륙에 이식시켰다. 뉴 바우하우스는 재능 있는 학생들을 요구했으며, 수공업 또는 기계공업 제품의 디자이너, 박람회, 무대, 전시, 상업미술, 타이포그래피, 사진 등의 디자이너, 그리고 조각가, 화가, 건축가의 양성을 목표로 했다. 모홀리 나기는 "
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 5.546,
+      "text": "슐레머는 1922년 슈투트가르트에서 초연된 《삼부작 발레》(Triadisches Ballett)로 국제적인 명성을 얻었다. 바우하우스에서의 활동과 연극에 대한 탐구는 그의 예술 전반에 중요한 영향을 미쳤으며, 그의 작품은 주로 공간 속의 인간 형상 문제를 다루었다. 그의 회화에서 인물은 대체로 얼굴 없는 여성의 형상으로 등장했다. 바우하우스에서 그는 ‘데어 멘쉬(Der Mensch, 인간)’라는 다학제적 강좌를 개설했는데, 인간의 몸을 그 시대의 혼란 속에서 균형을 찾는 척도로 보았다. 입체주의를 바탕으로 구조적 연구를 전개한 그는"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H2-02",
+   "bucket": "2hop",
+   "hops": 2,
+   "question": "바우하우스를 설립한 사람이 미국에서 가르친 학교는 어디인가?",
+   "expected_answer": "하버드 대학교 디자인 대학원 (Harvard Graduate School of Design)",
+   "expected_path": [
+    "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+    "Person(그로피우스) -TAUGHT_AT-> Institution(하버드 GSD)"
+   ],
+   "expected_atomics": [
+    "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+    "Person(그로피우스) -TAUGHT_AT-> Institution(하버드 GSD)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "하버드 대학교",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(하버드). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true,
+     true
+    ],
+    "path_precision": 0.05,
+    "n_evidence_on_path": 2,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 101,
+    "evidence_truncated": 309
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "핵심 개체가 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (하버드, harvard)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "제시된 텍스트 근거에는 바우하우스를 설립한 발터 그로피우스가 미국에서 가르친 학교에 대한 정보가 없습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 11.217,
+      "text": "新바우하우스\n폐쇄 이후 학교의 체제를 지닌 바우하우스의 후신을 자처하는 기관으로는 미국의 뉴 바우하우스와 독일의 울름조형대학을 들 수 있다. 바우하우스의 교육자들은 미국으로 대거 이주, 미국디자인 교육에 혁신의 바람을 일으켰고, 모홀리 나기는 뉴 바우하우스를 설립하면서 바우하우스식 교육을 신대륙에 이식시켰다. 뉴 바우하우스는 재능 있는 학생들을 요구했으며, 수공업 또는 기계공업 제품의 디자이너, 박람회, 무대, 전시, 상업미술, 타이포그래피, 사진 등의 디자이너, 그리고 조각가, 화가, 건축가의 양성을 목표로 했다. 모홀리 나기는 "
+     },
+     {
+      "doc": "ko_의자.md",
+      "score": 8.028,
+      "text": "등받이 각도\n의자의 종류에 따라 의도된 작업에 따라 다양한 좌석 위치를 가질 수 있다. 일반적으로 작업이나 식사를 위해 의도된 의자는 매우 약간만 기울어질 수 있다 (그렇지 않으면 앉은 사람이 책상이나 테이블에서 너무 멀리 떨어져 있다). 치과 의자는 반드시 기울어져야 한다. 연구에 따르면 가장 좋은 앉은 자세는 100°–110°로 기울어진 자세이다. 기울이려면 등받이가 독립적으로 조절될 수 있어야 한다. 기울어지는 좌석과 등받이는 앉은 사람의 등 근육에 가해지는 부하를 줄여준다. 일반적으로 앉은 사람이 오랫동안 앉아 있어야 한다면"
+     },
+     {
+      "doc": "ko_아르데코.md",
+      "score": 6.778,
+      "text": "1925년경 아르데코 내부에는 두 가지 서로 경쟁하는 학파가 공존했다. 장식 예술가 협회를 설립한 가구 디자이너 에밀 자크 룰만, 장 뒤낭, 조각가 앙투안 부르델, 디자이너 폴 푸아레를 포함한 전통주의자들은 현대적인 형태를 전통적인 장인 정신 및 값비싼 재료와 결합했다. 다른 한편에는 점차 과거를 거부하고 새로운 기술의 발전, 단순함, 장식의 부재, 저렴한 재료 및 대량 생산에 기초한 양식을 원했던 모더니스트들이 있었다. 모더니스트들은 1929년 자신들의 조직인 '현대 예술가 연맹'을 창설했다. 회원으로는 건축가 피에르 샤로, 프랑"
+     },
+     {
+      "doc": "ko_라슬로_모홀리나지.md",
+      "score": 6.534,
+      "text": "라슬로 모홀리나지(헝가리어: Moholy-Nagy László 모홀리너지 라슬로[*], 헝가리어 발음: [ˈmoholiˌnɒɟ ˈlaːsloː ], 영어: László Moholy-Nagy, 1895년 7월 20일~1946년 11월 24일)는 헝가리의 화가이자 사진작가이다. 헝가리 출생. 처음에는 법률가가 되려고 하였으나 1915년 미술로 전환하여 1917년 러시아의 구성주의 및 말레비치의 영향을 받았다. 1920년에 베를린으로 이주하였고 이 시기의 그의 작품에는 몬드리안의 영향을 볼 수 있다. 1923년 바우하우스에 초대되어 19"
+     },
+     {
+      "doc": "ko_발터_그로피우스.md",
+      "score": 6.448,
+      "text": "바우하우스(Bauhaus) 창립, 1919\n그로피우스는 1919년 교장으로서 독일의 바이마르(Weimar)에 바우하우스(Bauhaus)를 창립하게 된다. \"짓다\"라는 뜻의 \"바우(Bau)\"와 \"집\"이라는 \"하우스(Haus)\"의 합성어인 바우하우스는 건축을 궁극의 목표로 하고 창립되었다. 그럼에도 불구하고 당시 바우하우스에는 건축과가 없었는데 그 이유는 \"모든 예술의 결합이 건축이다\"라는 발상에서 각 예술적 요소들을 통달한다면 자연적으로 건축적 능력이 오른다고 생각했기 때문이다. 그로피우스는 바우하우스를 창립하며 교수들을 초빙하고 선"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H2-03",
+   "bucket": "2hop",
+   "hops": 2,
+   "question": "바실리 체어를 디자인한 사람이 가르친 학교는 어디인가?",
+   "expected_answer": "바우하우스 (이후 하버드 디자인 대학원에서도 가르침)",
+   "expected_path": [
+    "Work(바실리 체어) <-DESIGNED- Person(브로이어)",
+    "Person(브로이어) -TAUGHT_AT-> Institution(바우하우스)"
+   ],
+   "expected_atomics": [
+    "Work(바실리 체어) <-DESIGNED- Person(브로이어)",
+    "Person(브로이어) -TAUGHT_AT-> Institution(바우하우스)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "바우하우스, 하버드 대학교",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(바우하우스). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true,
+     true
+    ],
+    "path_precision": 0.05,
+    "n_evidence_on_path": 2,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 12,
+    "evidence_truncated": 211
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "핵심 개체가 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (브로이어, breuer)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "제시된 텍스트 근거에는 바실리 체어를 디자인한 인물에 대한 정보가 없으며, 따라서 그 인물이 가르친 학교 또한 확인할 수 없습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_의자.md",
+      "score": 8.028,
+      "text": "등받이 각도\n의자의 종류에 따라 의도된 작업에 따라 다양한 좌석 위치를 가질 수 있다. 일반적으로 작업이나 식사를 위해 의도된 의자는 매우 약간만 기울어질 수 있다 (그렇지 않으면 앉은 사람이 책상이나 테이블에서 너무 멀리 떨어져 있다). 치과 의자는 반드시 기울어져야 한다. 연구에 따르면 가장 좋은 앉은 자세는 100°–110°로 기울어진 자세이다. 기울이려면 등받이가 독립적으로 조절될 수 있어야 한다. 기울어지는 좌석과 등받이는 앉은 사람의 등 근육에 가해지는 부하를 줄여준다. 일반적으로 앉은 사람이 오랫동안 앉아 있어야 한다면"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 6.777,
+      "text": "비초에의 대표적인 제품으로는 디터 람스가 디자인하여 1960년에 출시한 606 유니버설 선반(606 Universal Shelving System)과 1962년에 출시한 620 소파(620 Chair Programme)와 621 테이블(621 Table)이 있다.  디터람스가 디자인한 620 시스템은 현재 독일 연방 총리실에서 사용되고 있다.\n미국의 디자인 평론가인 스펜서 베일리(Spencer Bailey)는 이 시스템을 \"내가 생각할 수 있는 가장 기능적이고 잘 구축된 디자인 중 하나\"라고 평가하기도 했다.\n각주"
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 6.388,
+      "text": "디자인\n바우하우스는 이전의 장인의 시대에서 산업 디자인의 시대로 넘어가는 분수령의 역할을 하면서 현대 디자인의 상징으로 자리 잡았다. 14년이라는 짧은 기간 동안만 유지된 학교이지만, 이후 현대 디자인에 엄청난 영향을 끼쳤는데, 바우하우스 디자인의 특징은 형태는 기능을 따른다는 말처럼 단순화되고 기능적인 형태미로 드러난다. 기능을 따른 형태의 디자인을 보여주는 예는 요즘도 많이 찾아볼 수 있다. 대표적인 예가 바로 다이슨의 청소기다. 이 제품은 최대의 기능을 이끌어내기 위해 필수 불가결한 요소만을 남김으로써 독특한 외형을 자랑한다."
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 6.099,
+      "text": "新바우하우스\n폐쇄 이후 학교의 체제를 지닌 바우하우스의 후신을 자처하는 기관으로는 미국의 뉴 바우하우스와 독일의 울름조형대학을 들 수 있다. 바우하우스의 교육자들은 미국으로 대거 이주, 미국디자인 교육에 혁신의 바람을 일으켰고, 모홀리 나기는 뉴 바우하우스를 설립하면서 바우하우스식 교육을 신대륙에 이식시켰다. 뉴 바우하우스는 재능 있는 학생들을 요구했으며, 수공업 또는 기계공업 제품의 디자이너, 박람회, 무대, 전시, 상업미술, 타이포그래피, 사진 등의 디자이너, 그리고 조각가, 화가, 건축가의 양성을 목표로 했다. 모홀리 나기는 "
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 6.088,
+      "text": "바우하우스 시절\n1919년 슐레머는 조각으로 방향을 바꾸어 베를린의 데어 슈투름(Der Sturm) 갤러리에서 전시회를 열었다. 동시에 그는 새로운 교수진을 임명하고 근대 미술 전시회를 열어 슈투트가르트 미술아카데미의 교육과정을 개혁하는 일에 참여했으며, 이 과정에서 파울 클레와 빌리 바우마이스터 같은 예술가들과 함께 일했다. 1920년 헬레나 투테인(Helena Tutein)과 결혼한 뒤, 발터 그로피우스의 초청으로 바이마르의 바우하우스로 가서 벽화와 조각 부서를 이끌었고, 1923년에는 로타어 슈라이어를 대신해 무대예술 워크숍을"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H2-04",
+   "bucket": "2hop",
+   "hops": 2,
+   "question": "게리트 리트벨트가 속한 사조에 속한 다른 인물은 누구인가?",
+   "expected_answer": "피트 몬드리안 (Piet Mondrian), 테오 판 두스뷔르흐 (Theo van Doesburg)",
+   "expected_path": [
+    "Person(리트벨트) -BELONGS_TO-> Movement(데 스테일)",
+    "Movement(데 스테일) <-BELONGS_TO- Person"
+   ],
+   "expected_atomics": [
+    "Person(리트벨트) -BELONGS_TO-> Movement(데 스테일)",
+    "Movement(데 스테일) <-BELONGS_TO- Person"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "피트 몬드리안, 빌모스 후사르, 바르트 판 데르 레크, J.J.P. 아우트(야코뷔스 아우트), 얀 빌스, 로베르트 판트 호프",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "허용 정답 집합 포함(몬드리안). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true,
+     true
+    ],
+    "path_precision": 0.3,
+    "n_evidence_on_path": 12,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 64,
+    "evidence_truncated": 201
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "허용 정답 집합 중 어느 것도 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (리트벨트, rietveld)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "제시된 텍스트 근거에는 게리트 리트벨트가 언급되어 있지 않으며, 그가 속한 사조나 그 사조에 속한 다른 인물에 대한 정보도 포함되어 있지 않습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_루트비히_미스_판_데어_로에.md",
+      "score": 16.202,
+      "text": "중요성과 의미\n미스는 새로운 건축 양식을 창조하는 것 뿐만 아니라 기술과 생산의 새 시대를 대표할 수 있는 새로운 건축 언어를 위한 견실한 지적인 토대를 수립하려는 일생의 야심찬 계획을 갖고 있었다. 그는 고딕 건축이 정신주의적 시대를 대표했던 것처럼, 그의 시대에도 대표하는 표현적이고 조화로운 건축이 필요함을 느꼈다. 그러한 정신적인 목표를 위해 이성적인 사고를 이용하는 엄밀한 디자인 과정을 적용했다. 건축은 그것이 속한 문화의 의미와 중요성과 소통한다고 생각했다. 미스는 그가 살고있던 시대의 성격과 본질이 무엇인지 더욱 잘 이해"
+     },
+     {
+      "doc": "ko_도시_계획가.md",
+      "score": 15.014,
+      "text": "미국\n미국의 기획자들은 대학이나 대학원에 진학한 경우가 많다. 학위 이수 증명서는 American Planning Association에 속한 기관 중 하나인 American Institute of Certified Planners (AICP) 에서만 발급 받을 수 있다.\nAICP 학위 이수 증명서를 받으려면 시험을 통과하고 실무 경험\n견습 기획자가 되기 위해서는 AICP 학위 이수 증명서가 필수는 아니지만 전문적인 지식을 어필할 수 있는 요소가 될 수 있다.\n외부 링크\nInternational Society of City and "
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 6.85,
+      "text": "슐레머는 1922년 슈투트가르트에서 초연된 《삼부작 발레》(Triadisches Ballett)로 국제적인 명성을 얻었다. 바우하우스에서의 활동과 연극에 대한 탐구는 그의 예술 전반에 중요한 영향을 미쳤으며, 그의 작품은 주로 공간 속의 인간 형상 문제를 다루었다. 그의 회화에서 인물은 대체로 얼굴 없는 여성의 형상으로 등장했다. 바우하우스에서 그는 ‘데어 멘쉬(Der Mensch, 인간)’라는 다학제적 강좌를 개설했는데, 인간의 몸을 그 시대의 혼란 속에서 균형을 찾는 척도로 보았다. 입체주의를 바탕으로 구조적 연구를 전개한 그는"
+     },
+     {
+      "doc": "ko_의자.md",
+      "score": 6.178,
+      "text": "언어 속 의자\n누군가 어떤 것에 대해 듣고 \"의자에서 거의 떨어질 뻔했다\"고 말한다면, 그것은 그들이 매우 충격받거나 놀랐기 때문이다.\n\"의자앉기 게임\"은 흔한 파티 게임이며, 사람들이 좌석에서 좌석으로, 다른 장소로, 또는 한 직책에서 다른 직책으로 자리를 바꾸는 것을 묘사하는 구어적 표현이다.\n미국 속어로, 누군가가 \"의자를 얻는다\"고 말하는 것은 그들이 전기의자로 처형될 것이라는 의미이다. 또는 다른 가혹한 처벌에 대한 은유일 수도 있다.\n같이 보기\n소파\n책상\n각주"
+     },
+     {
+      "doc": "ko_프랭크_로이드_라이트.md",
+      "score": 4.664,
+      "text": "애들러와 설리번 (1888년 ~ 1893년)\n라이트는 시카고에 있는 댄크마 애들러와 루이스 설리번의 건축 사무소에서 오디토리움 빌딩의 인테리어 디자인을 마무리할 사람을 찾는다는 소식을 듣는다. 라이트는 그가 루이스 설리번(Louis Sullivan)의 장식 디자인에 버금가는 인상주의자임을 입증했고, 두 번의 짧은 면접 끝에 설리번의 견습생이 된다. 라이트는 설리번의 다른 견습생들과 잘 지내지 못했다. 라이트는 견습 기간 초반 몇 년 동안 다른 견습생들과의 격한 논쟁이 여러 차례 있었다고 말했다. 이런 일에 있어서 설리번은 그의 견습"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H2-05",
+   "bucket": "2hop",
+   "hops": 2,
+   "question": "바우하우스의 마지막 교장이 미국에서 건축학과를 이끈 학교는 어디인가?",
+   "expected_answer": "일리노이 공과대학교 (Illinois Institute of Technology, IIT). 해당 인물은 루트비히 미스 반 데어 로에.",
+   "expected_path": [
+    "Person(미스) -TAUGHT_AT-> Institution(바우하우스)",
+    "Person(미스) -TAUGHT_AT-> Institution(IIT)"
+   ],
+   "expected_atomics": [
+    "Person(미스) -TAUGHT_AT-> Institution(바우하우스)",
+    "Person(미스) -TAUGHT_AT-> Institution(IIT)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "일리노이 기술대학(IIT)",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(일리노이, iit). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true,
+     true
+    ],
+    "path_precision": 0.05,
+    "n_evidence_on_path": 2,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 101,
+    "evidence_truncated": 309
+   },
+   "baseline": {
+    "answer": "일리노이 공과대학",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(일리노이). 정답.",
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "llm_reason": "제시된 텍스트 [1]에 따르면 바우하우스의 마지막 교장은 루트비히 미스 판 데어 로에이며, 그는 미국으로 이주하여 시카고의 건축 학교 교장직을 제안받았습니다. 또한 [0]에서 뉴 바우하우스가 일리노이 공과대학에 합병되었다는 내용과 함께 미스 판 데어 로에가 시카고의 건축 학교(일리노이 공과대학)를 이끌었음을 유추할 수 있습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 13.958,
+      "text": "新바우하우스\n폐쇄 이후 학교의 체제를 지닌 바우하우스의 후신을 자처하는 기관으로는 미국의 뉴 바우하우스와 독일의 울름조형대학을 들 수 있다. 바우하우스의 교육자들은 미국으로 대거 이주, 미국디자인 교육에 혁신의 바람을 일으켰고, 모홀리 나기는 뉴 바우하우스를 설립하면서 바우하우스식 교육을 신대륙에 이식시켰다. 뉴 바우하우스는 재능 있는 학생들을 요구했으며, 수공업 또는 기계공업 제품의 디자이너, 박람회, 무대, 전시, 상업미술, 타이포그래피, 사진 등의 디자이너, 그리고 조각가, 화가, 건축가의 양성을 목표로 했다. 모홀리 나기는 "
+     },
+     {
+      "doc": "ko_루트비히_미스_판_데어_로에.md",
+      "score": 12.047,
+      "text": "미국으로의 이민\n1929년 이후 세계 대공황으로 인해 설계 의뢰의 기회가 줄어들었다. 1930년대 초반에 미스는 친구이자 경쟁자인 발터 그로피우스의 요청으로 쇠락해가는 바우하우스에서 잠시 동안 마지막 교장이 되었다. 1933년 나치 정권의 정치적 압력은 이전에 이 학교가 사회주의, 공산주의, 그밖의 진보적인 이데올로기와 연관이 있었다는 것을 빌미로 미스가 정부가 출연한 학교의 문을 닫게 만들었다. 이때 미스는 매우 적은 수의 설계를 맡았다. (그 중 하나는 필립 존슨의 뉴욕 아파트였다.) 나치 정권은 미스의 양식이 \"독일적\" 성격이"
+     },
+     {
+      "doc": "ko_마르셀_브로이어.md",
+      "score": 10.256,
+      "text": "마르셀 브로이어(Marcel Breuer, 1902년 5월 22일~1981년 7월 1일)는 헝가리 출신의 모더니즘 건축가, 가구 디자이너이다.\n헝가리의 페치에서 태어났다. 애당초 화가와 조각가가 되고자 하여 오스트리아 빈으로 거처를 옮긴 뒤, 바우하우스의 제1기생으로 입교했다.\n그의 관심은 가구 디자인 분야에 있었으나 규격 모델을 사용한 주택에 착수함으로써 건축분야로 진출하였다.\n그는 바우하우스에서 가구에 관한 전문 코스의 공방을 담당하였는데 그가 뜻한 바는, 가구는 대량생산에 대응할 수 있는 단순한 형태와 다양한 기능을 가져야 한"
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 8.774,
+      "text": "교육\n바우하우스의 교육이념은 미국뿐만 아니라 세계 각지로 퍼져나갔는데, 바우하우스의 교육과정은 다른 나라들이 참고할 만큼의 가치가 있었다. 즉, 오늘날 세계 각지의 미술대학의 교과과정 중에는 바우하우스의 커리큘럼을 따른 것이 많다. 보통 1, 2학년까지는 구성, 소묘 판화, 해부학, 색채학 등을 이수하고, 3학년부터는 각자의 취향에 따라 도안(현재의 시각디자인), 염색공예, 도자기공예, 금속공예를 이수한다. 특히 금속, 요업, 섬유재료학 등은 화공계 교수에 의해 지도되며, 이렇게 재료학에 대한 비중이나 전공과목에 전문 기능인을 두어"
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 6.996,
+      "text": "1928년부터 1930년까지 슐레머는 에센의 폴크방 박물관에 있는 방을 위한 9점의 벽화를 제작했다. 1929년 바우하우스를 떠난 그는 브레슬라우 아카데미에서 《바우하우스 계단》(Bauhaustreppe, 1932, 뉴욕 근대미술관 소장) 등 대표작을 그렸다. 그러나 1929년 월스트리트 대폭락 이후 재정난으로 학교가 폐교되자, 1932년 베를린의 ‘자유·응용미술 통합국립학교(Vereinigte Staatsschulen für freie und angewandete Kunst)’ 교수로 임명되었으나, 1933년 나치 정권의 압력으로"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H3-01",
+   "bucket": "3hop",
+   "hops": 3,
+   "question": "바실리 체어를 디자인한 사람과 같은 학교에서 가르쳤던 인물이 미국에 세운 학교는 어디인가?",
+   "expected_answer": "뉴 바우하우스 (New Bauhaus). 브로이어와 모호이너지가 모두 바우하우스에서 가르쳤고, 모호이너지가 뉴 바우하우스를 세웠다.",
+   "expected_path": [
+    "Work(바실리 체어) <-DESIGNED- Person(브로이어)",
+    "Person(브로이어) -TAUGHT_AT-> Institution(바우하우스)",
+    "Institution(바우하우스) <-TAUGHT_AT- Person(모호이너지) -FOUNDED-> Institution(뉴 바우하우스)"
+   ],
+   "expected_atomics": [
+    "Work(바실리 체어) <-DESIGNED- Person(브로이어)",
+    "Person(브로이어) -TAUGHT_AT-> Institution(바우하우스)",
+    "Institution(바우하우스) <-TAUGHT_AT- Person(모호이너지)",
+    "Person(모호이너지) -FOUNDED-> Institution(뉴 바우하우스)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "뉴 바우하우스(New Bauhaus)",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "핵심 개체 포함(뉴바우하우스, newbauhaus). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 1.0,
+    "expected_atomics_in_evidence": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "path_precision": 0.1,
+    "n_evidence_on_path": 4,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 12,
+    "evidence_truncated": 211
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "핵심 개체가 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (브로이어, breuer)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "제시된 텍스트 근거에는 바실리 체어를 디자인한 인물에 대한 정보가 없으며, 그와 같은 학교에서 가르쳤던 인물이 미국에 세운 학교에 대한 정보도 포함되어 있지 않습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_아돌프_로스.md",
+      "score": 8.948,
+      "text": "# 아돌프 로스\n언어: ko\n분류: 건축 평론가, 근대 건축가, 미국에 거주한 오스트리아인, 아르누보 건축가, 오스트리아의 건축가, 프랑스에 거주한 오스트리아인"
+     },
+     {
+      "doc": "ko_의자.md",
+      "score": 8.859,
+      "text": "작업용 의자\n작업용 의자는 특정 직업이나 환경의 필요에 맞춰진 특수 의자이다. 예를 들어, 디자이너용 의자는 높은 이젤에 앉는 디자이너를 위해 사용되며, 일반적으로 높이가 추가된다.\n흔들의자\n일부 의자는 다리 바닥에 두 개의 굽은 나무 밴드(로커라고도 함)가 부착되어 있다. 이를 흔들의자라고 한다.\n무릎 의자\n무릎 의자는 몸의 무게를 지탱하기 위해 무릎이라는 추가적인 신체 부위를 사용한다. 앉아서 서는 의자는 앉은 사람의 무게 대부분을 발로 분산시킨다. 많은 의자는 패딩이 되어 있거나 쿠션이 있다. 패딩은 의자 좌석에만 있거나, 좌"
+     },
+     {
+      "doc": "ko_아르데코.md",
+      "score": 6.857,
+      "text": "1910년에서 1914년 사이 탄생할 당시 아르데코는 색채의 폭발과 같았다. 가구 천 씌우기, 카펫, 스크린, 벽지 및 직물에서 흔히 볼 수 있는 꽃무늬 디자인에 밝고 종종 충돌하는 색조를 특징으로 했다. 모리스 뒤프렌의 의자와 테이블, 그리고 폴 폴로의 밝은 고블랭 카펫을 포함한 많은 다채로운 작품들이 1912년 장식 예술가 살롱에서 선보였다. 1912-1913년에 디자이너 아드리앵 카르보우스키는 수집가 자크 두세의 수렵 오두막을 위해 앵무새 디자인의 꽃무늬 의자를 제작했다. 가구 디자이너 루이 쉬에와 앙드레 마르는 1912년 전"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 6.777,
+      "text": "비초에의 대표적인 제품으로는 디터 람스가 디자인하여 1960년에 출시한 606 유니버설 선반(606 Universal Shelving System)과 1962년에 출시한 620 소파(620 Chair Programme)와 621 테이블(621 Table)이 있다.  디터람스가 디자인한 620 시스템은 현재 독일 연방 총리실에서 사용되고 있다.\n미국의 디자인 평론가인 스펜서 베일리(Spencer Bailey)는 이 시스템을 \"내가 생각할 수 있는 가장 기능적이고 잘 구축된 디자인 중 하나\"라고 평가하기도 했다.\n각주"
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 6.388,
+      "text": "디자인\n바우하우스는 이전의 장인의 시대에서 산업 디자인의 시대로 넘어가는 분수령의 역할을 하면서 현대 디자인의 상징으로 자리 잡았다. 14년이라는 짧은 기간 동안만 유지된 학교이지만, 이후 현대 디자인에 엄청난 영향을 끼쳤는데, 바우하우스 디자인의 특징은 형태는 기능을 따른다는 말처럼 단순화되고 기능적인 형태미로 드러난다. 기능을 따른 형태의 디자인을 보여주는 예는 요즘도 많이 찾아볼 수 있다. 대표적인 예가 바로 다이슨의 청소기다. 이 제품은 최대의 기능을 이끌어내기 위해 필수 불가결한 요소만을 남김으로써 독특한 외형을 자랑한다."
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H3-02",
+   "bucket": "3hop",
+   "hops": 3,
+   "question": "그로피우스가 설립한 학교에서 가르쳤던 인물이 디자인한 작품은 무엇인가?",
+   "expected_answer": "바실리 체어, 체스카 체어 (마르셀 브로이어 작)",
+   "expected_path": [
+    "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+    "Institution(바우하우스) <-TAUGHT_AT- Person(브로이어)",
+    "Person(브로이어) -DESIGNED-> Work(바실리 체어)"
+   ],
+   "expected_atomics": [
+    "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+    "Institution(바우하우스) <-TAUGHT_AT- Person(브로이어)",
+    "Person(브로이어) -DESIGNED-> Work(바실리 체어)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "Cesca Chair, Long Chair, Wassily Chair",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "허용 정답 집합 포함(wassily, cesca). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 0.6666666666666666,
+    "expected_atomics_in_evidence": [
+     true,
+     false,
+     true
+    ],
+    "path_precision": 0.05,
+    "n_evidence_on_path": 2,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "정답이나 기대 경로 일부가 근거 40개에 없음(상한 절단). 답은 아래 우회 근거/원문 문장으로 도출됨: Institution(바우하우스) <-TAUGHT_AT- Person(브로이어) | 우회 근거: 문장 언급(en_Alan_I_W_Frank_House.md): The Alan I W Frank House is a private residence in Pittsburgh, Pennsylvania, designed by B…",
+    "truncated_by_cap": true,
+    "fanout_truncations": 124,
+    "evidence_truncated": 254
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "허용 정답 집합 중 어느 것도 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (브로이어, breuer)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "제시된 텍스트 근거에는 그로피우스가 설립한 바우하우스에서 가르쳤던 인물과 그 인물이 디자인한 작품에 대한 정보가 명시되어 있지 않습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_비초에.md",
+      "score": 10.672,
+      "text": "# 비초에\n언어: ko\n분류: 1959년 설립된 기업, 1959년 설립된 제조 기업, 가구 제조업체, 가구 회사, 산업 디자인\n비초에(독일어: Vitsœ) 또는 비초에-자프(독일어: Vitsœ-Zapf), 비초에 & 자프(독일어: Vitsœ & Zapf)는 독일에서 설립된 영국의 가구 회사로 디터 람스와의 협력으로 유명하며 독일의 클래식 디자인 가구로 유명하다.\n역사\n비초에 & 자프(Vitsœ & Zapf)는 브라운에서 근무하고 있던 디터 람스가 디자인한 가구를 생산하기 위해 덴마크 가구 딜러 닐스 비초에(Niels Vitsœ)와 "
+     },
+     {
+      "doc": "ko_바우하우스.md",
+      "score": 7.429,
+      "text": "역사\n1918년, 도이치 제국이 붕괴되어 바이마르 공화국이 성립되었다.\n1919년, 바이마르 공예학교와 바이마르 미술학교가 합병하여 '국립 바우하우스 바이마르'가 설립되었고, 초대 교장으로 그로피우스가 취임하였다.\n이후, 바이마르의 바우하우스가 폐쇄되어,\n1925년에 데사우로 이전, '데사우 시립 바우하우스'가 되었다. 데사우의 교사는 발터 그로피우스가 설계한 것으로, 모더니즘 건축으로서 각국에 소개되었다. 이 시기에 정식 건축과정이 설립되어 건축을 중심으로 모든 조형분야를 종합한다는 이상을 실현하기 위한 준비가 이루어졌다. 그로피"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 6.777,
+      "text": "비초에의 대표적인 제품으로는 디터 람스가 디자인하여 1960년에 출시한 606 유니버설 선반(606 Universal Shelving System)과 1962년에 출시한 620 소파(620 Chair Programme)와 621 테이블(621 Table)이 있다.  디터람스가 디자인한 620 시스템은 현재 독일 연방 총리실에서 사용되고 있다.\n미국의 디자인 평론가인 스펜서 베일리(Spencer Bailey)는 이 시스템을 \"내가 생각할 수 있는 가장 기능적이고 잘 구축된 디자인 중 하나\"라고 평가하기도 했다.\n각주"
+     },
+     {
+      "doc": "ko_발터_그로피우스.md",
+      "score": 6.343,
+      "text": "예술을 위한 노동자평의회(Arbeitsrat fur Kunst) 활동, 1918\n그로피우스는 1918년부터 예술을 위한 노동자평의회에서 활동을 하게 된다. 그 당시 노동자평의회 활동을 함께하던 주축으로는 Glass Pavilion을 작업한 브루노 타우트(Bruno Taut)가 있다. 노동자평의회는 위에서 말한 독일공작연맹의 분파중 Kunstwollen에 가까운 성격을 갖는다. 표현주의자들이 주축이 되어서 운영되는 이 활동에 그로피우스가 참여했다는 것은 다소 의아할 수 있는 행동이지만 그로피우스는 건축적 진영에 국한되는 것이 아닌 그"
+     },
+     {
+      "doc": "ko_의자.md",
+      "score": 6.316,
+      "text": "조각 및 예술 작품으로서\n크리스토는 1961년에 레디메이드 (의자), 래커, 캔버스, 로프, 페인트로 Wrapped Chair를 만들었다. 이 작품은 그와 그의 아내 잔 클로드의 상징적인 스타일인 물체를 천과 로프로 부분적으로 또는 전체적으로 숨기는 초기 작품이다. 그들의 작품은 대규모 공공 장소 특정 예술 작품과 환경 예술로 발전했으며, 이 부부는 주로 이로 인해 잘 알려져 있다. Wrapped Chair에서 크리스토는 부분을 숨기고 다른 부분을 드러냄으로써 오브제의 정체성과 놀이를 한다. 이 작품과 유사한 의자를 포함한 여러 변"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "H3-03",
+   "bucket": "3hop",
+   "hops": 3,
+   "question": "바우하우스를 설립한 사람이 미국에서 가르친 학교에서 함께 가르친 인물이 디자인한 작품은 무엇인가?",
+   "expected_answer": "바실리 체어, 체스카 체어 (브로이어 작). 그로피우스와 브로이어는 하버드 디자인 대학원에서 함께 가르쳤다.",
+   "expected_path": [
+    "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+    "Person(그로피우스) -TAUGHT_AT-> Institution(하버드 GSD) <-TAUGHT_AT- Person(브로이어)",
+    "Person(브로이어) -DESIGNED-> Work(바실리 체어)"
+   ],
+   "expected_atomics": [
+    "Person(그로피우스) -FOUNDED-> Institution(바우하우스)",
+    "Person(그로피우스) -TAUGHT_AT-> Institution(하버드 GSD)",
+    "Institution(하버드 GSD) <-TAUGHT_AT- Person(브로이어)",
+    "Person(브로이어) -DESIGNED-> Work(바실리 체어)"
+   ],
+   "expected_atomics_in_graph": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "graphrag": {
+    "answer": "바실리 의자(Wassily Chair), 체스카 의자(Cesca Chair)",
+    "refused": false,
+    "verdict": "correct",
+    "verdict_reason": "허용 정답 집합 포함(바실리, wassily, 체스카, cesca). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": 0.5,
+    "expected_atomics_in_evidence": [
+     true,
+     true,
+     false,
+     false
+    ],
+    "path_precision": 0.05,
+    "n_evidence_on_path": 2,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "정답이나 기대 경로 일부가 근거 40개에 없음(상한 절단). 답은 아래 우회 근거/원문 문장으로 도출됨: Institution(하버드 GSD) <-TAUGHT_AT- Person(브로이어) | 우회 근거: Marcel Breuer -TAUGHT_AT-> Bauhaus // Person(브로이어) -DESIGNED-> Work(바실리 체어) | 우회 근거: Marcel Breuer -DESIGNED-> Cesca Chair",
+    "truncated_by_cap": true,
+    "fanout_truncations": 101,
+    "evidence_truncated": 308
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "wrong",
+    "verdict_reason": "허용 정답 집합 중 어느 것도 답변에 없음. 오답.",
+    "failure_layer": "retrieval",
+    "failure_reason": "검색된 top-k 청크에 답의 핵심 실마리 (브로이어, breuer)가 없음 -> basic RAG 검색(retrieval) 실패로 귀속.",
+    "llm_reason": "바우하우스를 설립한 발터 그로피우스가 미국에서 가르친 학교와 그곳에서 함께 가르친 인물에 대한 정보가 제시된 텍스트 근거에 존재하지 않습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 12.027,
+      "text": "1928년부터 1930년까지 슐레머는 에센의 폴크방 박물관에 있는 방을 위한 9점의 벽화를 제작했다. 1929년 바우하우스를 떠난 그는 브레슬라우 아카데미에서 《바우하우스 계단》(Bauhaustreppe, 1932, 뉴욕 근대미술관 소장) 등 대표작을 그렸다. 그러나 1929년 월스트리트 대폭락 이후 재정난으로 학교가 폐교되자, 1932년 베를린의 ‘자유·응용미술 통합국립학교(Vereinigte Staatsschulen für freie und angewandete Kunst)’ 교수로 임명되었으나, 1933년 나치 정권의 압력으로"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 10.672,
+      "text": "# 비초에\n언어: ko\n분류: 1959년 설립된 기업, 1959년 설립된 제조 기업, 가구 제조업체, 가구 회사, 산업 디자인\n비초에(독일어: Vitsœ) 또는 비초에-자프(독일어: Vitsœ-Zapf), 비초에 & 자프(독일어: Vitsœ & Zapf)는 독일에서 설립된 영국의 가구 회사로 디터 람스와의 협력으로 유명하며 독일의 클래식 디자인 가구로 유명하다.\n역사\n비초에 & 자프(Vitsœ & Zapf)는 브라운에서 근무하고 있던 디터 람스가 디자인한 가구를 생산하기 위해 덴마크 가구 딜러 닐스 비초에(Niels Vitsœ)와 "
+     },
+     {
+      "doc": "ko_발터_그로피우스.md",
+      "score": 10.667,
+      "text": "건축활동\n그로피우스는 그의 아버지와 큰 아버지인 마틴 그로피우스처럼 건축가가 되었다. 그로피우스는 그림을 그리지 못했고, 그가 살아있는 동안 계속해서 협력자들과 동료 해석자들에게 의존했다. 학교에서 그는 자신의 숙제를 완성시키기 위해 보조자를 고용했다.1907년 그로피우스는 실용주의 학파의 최초 구성원 중 하나이었던 페터 베렌스의 사무실에서 일할 수 있는 자리를 발견했다. 이 당시 그의 직장 동료 중에는 루드비히 미스 반 데어 로에, 르 코르뷔지에, 다트리히 막스(Dietrich Marcks)등이 있었다.\n1910년 그로피우스는 베"
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 10.271,
+      "text": "바우하우스 시절\n1919년 슐레머는 조각으로 방향을 바꾸어 베를린의 데어 슈투름(Der Sturm) 갤러리에서 전시회를 열었다. 동시에 그는 새로운 교수진을 임명하고 근대 미술 전시회를 열어 슈투트가르트 미술아카데미의 교육과정을 개혁하는 일에 참여했으며, 이 과정에서 파울 클레와 빌리 바우마이스터 같은 예술가들과 함께 일했다. 1920년 헬레나 투테인(Helena Tutein)과 결혼한 뒤, 발터 그로피우스의 초청으로 바이마르의 바우하우스로 가서 벽화와 조각 부서를 이끌었고, 1923년에는 로타어 슈라이어를 대신해 무대예술 워크숍을"
+     },
+     {
+      "doc": "ko_빌라_사부아.md",
+      "score": 8.562,
+      "text": "# 빌라 사부아\n언어: ko\n분류: 1931년 완공된 건축물, 근대 건축, 이블린주의 박물관, 푸아시, 프랑스의 고택 박물관, 프랑스의 역사기념물\n빌라 사보아(Villa Savoye)는 프랑스 파리의 외곽인 푸아시에 있는 현대식 빌라이다. 스위스 건축가 르 코르뷔지에와 그의 사촌 피에르 장느레에 의해 1928년부터 1931년까지 강화 콘크리트를 사용하여 지어졌다.\n배경\n1920년대 말 무렵 르 코르뷔지에는 세계적으로 유명한 건축가였다. 그의 책, <건축을 향하여>는 각국의 언어로 번역되었고, 모스크바의 센트로소유즈와 함께 일해 러시"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "R-01",
+   "bucket": "refusal",
+   "hops": null,
+   "question": "마르셀 브로이어가 디자인한 자동차는 무엇인가?",
+   "expected_answer": "REFUSE — 근거 없음. 브로이어의 DESIGNED 관계는 가구와 건축물뿐이며, 코퍼스에 자동차 관련 근거가 없다.",
+   "expected_path": [],
+   "expected_atomics": [],
+   "expected_atomics_in_graph": [],
+   "graphrag": {
+    "answer": "근거를 찾지 못했습니다: 제시된 증거 삼중항과 탐색 경로를 검토한 결과, 마르셀 브로이어가 디자인한 자동차에 대한 정보는 존재하지 않습니다. [탐색 현황] 시작 개체: ['Person:marcel breuer'] / 도달 홉: 3/3 / 방문 노드 33개: ['Institution:yale university', 'Person:eero saarinen', 'Person:ludwig mies van der rohe', 'Person:marcel breuer', 'Person:walter gropius', 'Work:200 park avenue (metlife) building', 'Work:alan i w frank house', 'Work:aluminum city terrace', 'Work:ariston club', 'Work:auerbach house', 'Work:bauhaus building in dessau', 'Work:bauhaus dessau school building', 'Work:bauhaus school', 'Work:bauhaus school building', 'Work:cantilever chair'] ... / 근거 삼중항 40개 / 상한 절단: 팬아웃 29건·근거 105건",
+    "refused": true,
+    "verdict": "correct",
+    "verdict_reason": "거절 문항에서 거절함(refused=True). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": null,
+    "expected_atomics_in_evidence": [],
+    "path_precision": null,
+    "n_evidence_on_path": 0,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 29,
+    "evidence_truncated": 105
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "correct",
+    "verdict_reason": "거절 문항에서 거절함(refused=True). 정답.",
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "llm_reason": "제시된 텍스트 근거에는 마르셀 브로이어가 디자인한 자동차에 대한 정보가 포함되어 있지 않습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_마르셀_브로이어.md",
+      "score": 9.625,
+      "text": "# 마르셀 브로이어\n언어: ko\n분류: 가구 디자이너, 근대 건축가, 독일에 거주한 헝가리인, 바우하우스, 하버드 대학교 교수, 헝가리 유대인, 헝가리의 건축가"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 6.777,
+      "text": "비초에의 대표적인 제품으로는 디터 람스가 디자인하여 1960년에 출시한 606 유니버설 선반(606 Universal Shelving System)과 1962년에 출시한 620 소파(620 Chair Programme)와 621 테이블(621 Table)이 있다.  디터람스가 디자인한 620 시스템은 현재 독일 연방 총리실에서 사용되고 있다.\n미국의 디자인 평론가인 스펜서 베일리(Spencer Bailey)는 이 시스템을 \"내가 생각할 수 있는 가장 기능적이고 잘 구축된 디자인 중 하나\"라고 평가하기도 했다.\n각주"
+     },
+     {
+      "doc": "ko_프랭크_로이드_라이트.md",
+      "score": 5.89,
+      "text": "과도기와 실험 (1893년 ~ 1900년)\n애들러와 설리번을 떠난 라이트는 시카고 랜돌프 가에 있는 설리번이 디자인한 쉴러 빌딩 최상층에 자신의 건축 사무소를 차렸다. 라이트가 이 빌딩의 위치가 애들러와 설리번에서의 사무실을 생각나게 했기 때문에 이 빌딩에 사무실을 구했다. 세실 커윈이 라이트를 따라 이 사무실로 옮겨왔지만, 이 둘은 각자 독립적으로 일했고 서로를 파트너라고 생각하지 않았다.\n주요 작품\n구겐하임 미술관\n카우프만 저택 (낙수장)\n라킨 빌딩\n유니티 교회\n탈리어센 웨스트\n플로리다 서던 컬리지\n존슨 빌딩\n데이코쿠 호텔\n자유"
+     },
+     {
+      "doc": "ko_빌라_사부아.md",
+      "score": 5.73,
+      "text": "빌라 사부아 살롱\n르 코르뷔지에는 일찍이 설계한 빌라와는 달리, 태양의 전망과 방향을 고려하여 빌라 사부아의 네 면을 모두 세심하게 설계하였다. 그는 1층에는 정문, 계단과 계단, 차고, 그리고 운전사와 하녀의 방을 놓았다. 2층에는 주인 침실, 아들의 침실, 손님용 침실, 부엌, 미용실, 외부 테라스가 있었다. 미용실은 남동쪽을 향했고 테라스는 동쪽을 향했다. 아들의 침실은 북서쪽을 향했고, 부엌과 서비스 테라스는 남서쪽을 향했다. 2층에는 일광욕실을 형성하는 연이은 조각된 공간들이 있었다.\n건물은 황금비의 주요 비율을 사용하여 "
+     },
+     {
+      "doc": "ko_아르누보.md",
+      "score": 5.622,
+      "text": "역사\n기원\n아르누보는 윌리엄 모리스의 꽃무늬 디자인, 그리고 모리스의 제자들에 의해 설립된 아트 앤 크래프트 운동에 뿌리를 두고 있다. 모리스의 인테리어 디디자인과 필립 웹(1859년)의 레드 하우스(Red House), 제임스 애벗 맥닐 휘슬러의 피콕 룸 등이 아르누보의 선구자격에 해당되는 작품이다. 아트 앤 크래프트 운동은 또한 단테이 게이브리얼 로세티와 에드워드 번 존스를 비롯한 라파엘 전파 화가들과 셀루인 이미지 (Selwyn Image), 헤이우드 섬너(Heywood Sumner), 월터 크레인, 알프레드 길버트 (Alfr"
+     }
+    ]
+   }
+  },
+  {
+   "qid": "R-02",
+   "bucket": "refusal",
+   "hops": null,
+   "question": "디터 람스가 바우하우스에서 가르친 과목은 무엇인가?",
+   "expected_answer": "REFUSE — 근거 없음. 디터 람스와 바우하우스 사이에 TAUGHT_AT 관계가 존재하지 않는다.",
+   "expected_path": [],
+   "expected_atomics": [],
+   "expected_atomics_in_graph": [],
+   "graphrag": {
+    "answer": "근거를 찾지 못했습니다: 찾은 경로가 질문이 요구하는 관계 타입과 맞지 않습니다. 질문 속 서로 다른 언급(2개 그룹)이 그래프에서 연결되지 않았습니다: {Person:dieter rams} / {Institution:bauhaus,Movement:bauhaus} [탐색 현황] 시작 개체: ['Person:dieter rams', 'Institution:bauhaus', 'Movement:bauhaus'] / 도달 홉: 3/3 / 방문 노드 162개: ['Company:braun', 'Company:dieter and ingeborg rams foundation', 'Company:vitsoe', 'Institution:wiesbaden school of art', 'Person:dieter rams', 'Person:jonathan ive', 'Work:606 universal shelving system', 'Work:620 chair', 'Work:620 chair collection', 'Work:620 chair programme', 'Work:621 table', 'Work:apple watch', 'Work:bn0106 digital chronograph', 'Work:braun sk4', 'Work:f21'] ... / 근거 삼중항 40개 / 상한 절단: 팬아웃 101건·근거 326건 / Movement 경유 제한 2건",
+    "refused": true,
+    "verdict": "correct",
+    "verdict_reason": "거절 문항에서 거절함(refused=True). 정답.",
+    "hops_taken": 3,
+    "n_evidence": 40,
+    "path_recall": null,
+    "expected_atomics_in_evidence": [],
+    "path_precision": null,
+    "n_evidence_on_path": 0,
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "grounding_note": "",
+    "truncated_by_cap": true,
+    "fanout_truncations": 101,
+    "evidence_truncated": 326
+   },
+   "baseline": {
+    "answer": "",
+    "refused": true,
+    "verdict": "correct",
+    "verdict_reason": "거절 문항에서 거절함(refused=True). 정답.",
+    "failure_layer": "none",
+    "failure_reason": "정답이므로 실패 층 없음.",
+    "llm_reason": "제시된 텍스트 근거 어디에도 디터 람스가 바우하우스에서 가르쳤다는 내용이나 그가 가르친 과목에 대한 정보가 존재하지 않습니다.",
+    "retrieved": [
+     {
+      "doc": "ko_비초에.md",
+      "score": 15.547,
+      "text": "비초에의 대표적인 제품으로는 디터 람스가 디자인하여 1960년에 출시한 606 유니버설 선반(606 Universal Shelving System)과 1962년에 출시한 620 소파(620 Chair Programme)와 621 테이블(621 Table)이 있다.  디터람스가 디자인한 620 시스템은 현재 독일 연방 총리실에서 사용되고 있다.\n미국의 디자인 평론가인 스펜서 베일리(Spencer Bailey)는 이 시스템을 \"내가 생각할 수 있는 가장 기능적이고 잘 구축된 디자인 중 하나\"라고 평가하기도 했다.\n각주"
+     },
+     {
+      "doc": "ko_비초에.md",
+      "score": 15.251,
+      "text": "# 비초에\n언어: ko\n분류: 1959년 설립된 기업, 1959년 설립된 제조 기업, 가구 제조업체, 가구 회사, 산업 디자인\n비초에(독일어: Vitsœ) 또는 비초에-자프(독일어: Vitsœ-Zapf), 비초에 & 자프(독일어: Vitsœ & Zapf)는 독일에서 설립된 영국의 가구 회사로 디터 람스와의 협력으로 유명하며 독일의 클래식 디자인 가구로 유명하다.\n역사\n비초에 & 자프(Vitsœ & Zapf)는 브라운에서 근무하고 있던 디터 람스가 디자인한 가구를 생산하기 위해 덴마크 가구 딜러 닐스 비초에(Niels Vitsœ)와 "
+     },
+     {
+      "doc": "ko_디터_람스.md",
+      "score": 12.55,
+      "text": "# 디터 람스\n언어: ko\n분류: 독일의 디자이너, 살아있는 사람\n디터 람스(독일어: Dieter Rams, 1932년 5월 20일 ~ )는 독일의 비스바덴에서 태어나, 브라운 회사의 수석 디자이너로 일했던 독일의 대표적인 산업 디자이너이다.\n디터 람스의 디자인 10계명\n디터 람스의 좋은 디자인은 다음과 같다."
+     },
+     {
+      "doc": "ko_오스카르_슐레머.md",
+      "score": 5.546,
+      "text": "슐레머는 1922년 슈투트가르트에서 초연된 《삼부작 발레》(Triadisches Ballett)로 국제적인 명성을 얻었다. 바우하우스에서의 활동과 연극에 대한 탐구는 그의 예술 전반에 중요한 영향을 미쳤으며, 그의 작품은 주로 공간 속의 인간 형상 문제를 다루었다. 그의 회화에서 인물은 대체로 얼굴 없는 여성의 형상으로 등장했다. 바우하우스에서 그는 ‘데어 멘쉬(Der Mensch, 인간)’라는 다학제적 강좌를 개설했는데, 인간의 몸을 그 시대의 혼란 속에서 균형을 찾는 척도로 보았다. 입체주의를 바탕으로 구조적 연구를 전개한 그는"
+     },
+     {
+      "doc": "ko_루트비히_미스_판_데어_로에.md",
+      "score": 5.39,
+      "text": "미국으로의 이민\n1929년 이후 세계 대공황으로 인해 설계 의뢰의 기회가 줄어들었다. 1930년대 초반에 미스는 친구이자 경쟁자인 발터 그로피우스의 요청으로 쇠락해가는 바우하우스에서 잠시 동안 마지막 교장이 되었다. 1933년 나치 정권의 정치적 압력은 이전에 이 학교가 사회주의, 공산주의, 그밖의 진보적인 이데올로기와 연관이 있었다는 것을 빌미로 미스가 정부가 출연한 학교의 문을 닫게 만들었다. 이때 미스는 매우 적은 수의 설계를 맡았다. (그 중 하나는 필립 존슨의 뉴욕 아파트였다.) 나치 정권은 미스의 양식이 \"독일적\" 성격이"
+     }
+    ]
+   }
+  }
+ ],
+ "by_hop": {
+  "1hop": {
+   "n": 2,
+   "qids": [
+    "H1-01",
+    "H1-02"
+   ],
+   "graphrag": {
+    "correct": 2,
+    "partial": 0,
+    "wrong": 0,
+    "accuracy": 1.0
+   },
+   "baseline": {
+    "correct": 1,
+    "partial": 0,
+    "wrong": 1,
+    "accuracy": 0.5
+   },
+   "accuracy_gap_graphrag_minus_baseline": 0.5,
+   "mean_path_recall": 1.0,
+   "mean_path_precision": 0.087,
+   "all_hops_taken_3_and_evidence_capped": true
+  },
+  "2hop": {
+   "n": 5,
+   "qids": [
+    "H2-01",
+    "H2-02",
+    "H2-03",
+    "H2-04",
+    "H2-05"
+   ],
+   "graphrag": {
+    "correct": 5,
+    "partial": 0,
+    "wrong": 0,
+    "accuracy": 1.0
+   },
+   "baseline": {
+    "correct": 2,
+    "partial": 0,
+    "wrong": 3,
+    "accuracy": 0.4
+   },
+   "accuracy_gap_graphrag_minus_baseline": 0.6,
+   "mean_path_recall": 1.0,
+   "mean_path_precision": 0.1,
+   "all_hops_taken_3_and_evidence_capped": true
+  },
+  "3hop": {
+   "n": 3,
+   "qids": [
+    "H3-01",
+    "H3-02",
+    "H3-03"
+   ],
+   "graphrag": {
+    "correct": 3,
+    "partial": 0,
+    "wrong": 0,
+    "accuracy": 1.0
+   },
+   "baseline": {
+    "correct": 0,
+    "partial": 0,
+    "wrong": 3,
+    "accuracy": 0.0
+   },
+   "accuracy_gap_graphrag_minus_baseline": 1.0,
+   "mean_path_recall": 0.722,
+   "mean_path_precision": 0.067,
+   "all_hops_taken_3_and_evidence_capped": true
+  },
+  "refusal": {
+   "n": 2,
+   "qids": [
+    "R-01",
+    "R-02"
+   ],
+   "graphrag": {
+    "correct": 2,
+    "partial": 0,
+    "wrong": 0,
+    "accuracy": 1.0
+   },
+   "baseline": {
+    "correct": 2,
+    "partial": 0,
+    "wrong": 0,
+    "accuracy": 1.0
+   },
+   "accuracy_gap_graphrag_minus_baseline": 0.0,
+   "mean_path_recall": null,
+   "mean_path_precision": null,
+   "all_hops_taken_3_and_evidence_capped": true
+  }
+ },
+ "index_defects": [
+  {
+   "id": "D1",
+   "title": "en_Weimar.md발 FOUNDED 오추출 4건 (알려진 결함, 그래프 잔류 확인)",
+   "layer": "index",
+   "triples": [
+    "Wassily Kandinsky -FOUNDED-> Bauhaus (doc: en_Weimar.md)",
+    "Paul Klee -FOUNDED-> Bauhaus (doc: en_Weimar.md)",
+    "Henry van de Velde -FOUNDED-> Bauhaus (doc: en_Weimar.md)",
+    "Lyonel Feininger -FOUNDED-> Bauhaus (doc: en_Weimar.md)"
+   ],
+   "source_sentence": "Later, artists and architects including Henry van de Velde, Wassily Kandinsky, Paul Klee, Lyonel Feininger, and Walter Gropius came to the city and founded the Bauhaus movement, the most important German design school of the interwar period.",
+   "why_wrong": "원문은 'came to the city and founded the Bauhaus movement' — 사조(Movement)에 대한 서술을 학교(Institution) 설립으로 추출했고, 실제로 마이스터로 부임한 4인을 설립자로 만들었다. Gropius의 FOUNDED는 별도 근거로 정당하므로 제외.",
+   "impact": "H1-01은 Gropius 삼중항 덕에 정답이 나오지만, '바우하우스 설립자' 질의의 근거 정밀도를 갉아먹는 색인층 결함이다."
+  },
+  {
+   "id": "D2",
+   "title": "FOUNDED 주어 오인 + 동일 학교 3중복 — van de Velde 관련 Institution 노드",
+   "layer": "index",
+   "triples": [
+    "Henry van de Velde -FOUNDED-> Grand-Ducal School of Arts and Crafts (doc: en_Art_Nouveau.md)",
+    "Henry van de Velde -FOUNDED-> Grand Ducal Saxon School of Arts and Crafts (doc: en_Bauhaus.md)"
+   ],
+   "source_sentence": "In 1906, he departed Belgium for Weimar (Germany), where he founded the Grand-Ducal School of Arts and Crafts, where the teaching of historical styles was forbidden.",
+   "why_wrong": "(a) en_Bauhaus.md 삼중항은 명백한 주어 오인이다. 원문 주어는 'the Grand Duke of Saxe-Weimar-Eisenach'이고 van de Velde는 'directed by'의 대상(교장)이다. 수동문 주어를 설립자로 오인한 추출 오류. (b) en_Art_Nouveau.md 삼중항('he founded the Grand-Ducal School')은 문장 자체는 van de Velde 설립을 서술하나, 결과적으로 같은 학교가 'Grand-Ducal School of Arts and Crafts' / 'Grand Ducal Saxon School of Arts and Crafts' / 'Kunstgewerbeschule Weimar' 3개 Institution 노드로 중복됐다. 별칭 병합 실패(색인층)다.",
+   "impact": "설립자 질의에서 오답 후보를 만들고, 동일 학교가 3개 노드로 분단돼 TAUGHT_AT/FOUNDED 경로 탐색을 분산시킨다."
+  },
+  {
+   "id": "D3",
+   "title": "역사 서술 라벨의 Institution 오분류 — 'Second School of Chicago'",
+   "layer": "index",
+   "triples": [
+    "Ludwig Mies van der Rohe -FOUNDED-> Second School of Chicago (node_type=Institution, doc: en_International_Style.md)"
+   ],
+   "source_sentence": "When Mies fled in 1938, he first fled to England, but on emigrating to the US he went to Chicago, founded the Second School of Chicago at IIT and solidified his reputation as a prototypical modern architect.",
+   "why_wrong": "'Second School of Chicago'는 건축사 서술상의 유파 라벨이지 설립 가능한 학교/회사가 아니다. 스키마(FOUNDED: Person->Institution|Company) 위반.",
+   "impact": "Mies 관련 설립 질의의 정밀도를 떨어뜨리는 색인층 결함."
+  },
+  {
+   "id": "D4",
+   "title": "예술 그룹의 Company 오분류 — '네오모던' (FOUNDED 대상 오용)",
+   "layer": "index",
+   "triples": [
+    "가이 데닝 -FOUNDED-> 네오모던 (node_type=Company, doc: ko_네오모던.md)"
+   ],
+   "source_sentence": "네오모던 예술가 그룹은 1997년 가이 데닝(Guy Denning)에 의해 창립되었으며, 현대 예술의 다양성이 국가 지원을 받는 예술 기관과 단체들에 의해 억압받고 있다는 전제하에 시작되었다.",
+   "why_wrong": "'네오모던 예술가 그룹'은 운동/집단이지 회사가 아니다. FOUNDED의 대상은 Institution|Company여야 하므로 스키마 위반.",
+   "impact": "FOUNDED 관계 전체의 신뢰도를 갉아먹는 추출 오류."
+  },
+  {
+   "id": "D5",
+   "title": "일반명사 Work 노드 약 60개 잔류 후보 (GUIDE §4.4 위반)",
+   "layer": "index",
+   "count": 60,
+   "examples": [
+    "products (deg 3)",
+    "art nouveau designs (deg 2)",
+    "costumes and sets (deg 2)",
+    "houses (deg 2)",
+    "a floor (deg 1)",
+    "a massive fireplace (deg 1)",
+    "alphabet (deg 1)",
+    "balustrades (deg 1)",
+    "bottles (deg 1)",
+    "bridges and service stations (deg 1)",
+    "building (deg 1)",
+    "buildings (deg 1)",
+    "clothing (deg 1)",
+    "crematorium (deg 1)",
+    "dresses (deg 1)"
+   ],
+   "why_wrong": "'building', 'houses', 'clothing', 'jewelry', 'products', 'art nouveau designs', 'costumes and sets' 등 일반명사가 Work 노드로 추출됐다. §4에서 제외하기로 한 것들이다. 집계는 소문자 시작·일반명사형만 센 엄격 기준이며, 소문자 스타일 정식 명칭이 극소수 섞여 있을 수 있다.",
+   "impact": "대부분 deg 1이라 이번 12문항 채점에는 직접 영향이 없으나, DESIGNED 관계(935건)의 정밀도를 구조적으로 떨어뜨린다."
+  },
+  {
+   "id": "CHECK-R",
+   "title": "거절 문항의 그래프 내 뒷받침 존재 여부 (오답이 아닌지 확인용)",
+   "layer": "index",
+   "breuer_car_designed_triples": 0,
+   "rams_taught_at_bauhaus_triples": 0,
+   "why_wrong": "해당 없음(확인용 항목).",
+   "impact": "두 값 모두 0이어야 거절이 정당하다. 0이 아니면 거절 문항 설계 자체가 깨진다. 실측: Breuer-자동차 0건, Rams-TAUGHT_AT-Bauhaus 0건 -> 거절 정당."
+  }
+ ],
+ "limitations": [
+  "조기 종료 없음: 답을 찾아도 3홉까지 확장하므로 12문항 전부 hops_taken=3, 근거 40개(상한)다. 정밀도 하락의 직접 원인. GUIDE §7 알려진 한계.",
+  "거절 문항의 경로 재현율/정밀도는 기대 경로가 없어 측정 불가(null).",
+  "기본 RAG 청크 분할(~700자)·토크나이저(영숫자/한글 블록)는 단순 구현이며, 임베딩 기반 검색이 아니라는 한계가 있다."
+ ]
+}
