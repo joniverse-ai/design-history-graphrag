@@ -1,6 +1,10 @@
-streamlit
-networkx
-langgraph
-google-genai
-pandas
-graphviz
+# 파이프라인
+requests           # scripts/collect_corpus.py — 위키백과 API 수집
+google-genai       # build_graph.py, agent.py, evaluate.py — Gemini 호출
+networkx           # build_graph.py, agent.py — 그래프 구성·탐색
+langgraph          # agent.py — 멀티홉 에이전트 StateGraph
+typing-extensions  # agent.py — TypedDict (Python 3.9 호환)
+rank-bm25          # evaluate.py — basic RAG 베이스라인 (BM25 top-k)
+
+# 데모
+streamlit          # app.py

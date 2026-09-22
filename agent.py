@@ -112,24 +112,6 @@ def load_alias_index() -> List[Dict[str, Any]]:
     return idx
 
 
-def _load_caps() -> None:
-    """config.json 이 있으면 FANOUT_CAP/EVIDENCE_CAP 을 덮어쓴다 (없으면 기본값)."""
-    global FANOUT_CAP, EVIDENCE_CAP
-    cfg = ROOT / "config.json"
-    if not cfg.exists():
-        return
-    try:
-        raw = json.loads(cfg.read_text(encoding="utf-8"))
-        if isinstance(raw.get("FANOUT_CAP"), int) and raw["FANOUT_CAP"] > 0:
-            FANOUT_CAP = raw["FANOUT_CAP"]
-        if isinstance(raw.get("EVIDENCE_CAP"), int) and raw["EVIDENCE_CAP"] > 0:
-            EVIDENCE_CAP = raw["EVIDENCE_CAP"]
-    except Exception:
-        pass
-
-
-_load_caps()
-
 # ---------------------------------------------------------------- 그래프
 
 _G = None
@@ -328,7 +310,10 @@ def _ranked_neighbors(cur: str, required_rels: List[str]) -> Tuple[List[str], in
             for d in g[nb][cur].values():
                 rels.add(d.get("relation"))
                 multi += 1
-        match = 1 if (reqs & rels) else (0 if reqs else 0)
+        # 질문이 요구하는 관계를 가진 이웃을 먼저 편다.
+        # 요구 관계가 있는데 매치되지 않는 이웃에 음수 페널티를 주는 안도 있으나,
+        # 측정 없이 탐색 점수를 바꾸지 않는다 (GUIDE.md §5 v1 의 교훈).
+        match = 1 if (reqs & rels) else 0
         scored.append((-match, -multi, node_label(nb), nb))
     scored.sort()
     ordered = [nb for _, _, _, nb in scored]

@@ -292,7 +292,7 @@ def build_chunks():
     chunks = []
     for fp in sorted(DOCS_DIR.glob("*.md")):
         text = fp.read_text(encoding="utf-8")
-        #见长标题·wang단락 기준 분할 후 ~700자 합치기
+        # 문단 기준으로 나눈 뒤 ~700자 단위로 합친다
         paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
         buf = ""
         for p in paras:
